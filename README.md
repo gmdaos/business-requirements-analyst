@@ -36,7 +36,7 @@ Un **documento maestro de requerimientos** que incluye:
 ### Opción 1: NPX (Recomendado)
 
 ```bash
-npx skills add https://github.com/TU-USUARIO/business-requirements-analyst-skill --skill business-requirements-analyst
+npx skills add gmdaos/business-requirements-analyst-skill
 ```
 
 ### Opción 2: Instalación Manual
@@ -45,7 +45,7 @@ npx skills add https://github.com/TU-USUARIO/business-requirements-analyst-skill
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/TU-USUARIO/business-requirements-analyst-skill.git
+git clone https://github.com/gmdaos/business-requirements-analyst-skill.git
 
 # Copiar a tu proyecto
 cp -r business-requirements-analyst-skill/business-requirements-analyst .agent/skills/
@@ -53,7 +53,7 @@ cp -r business-requirements-analyst-skill/business-requirements-analyst .agent/s
 
 #### En Claude.ai:
 
-1. Descarga el archivo [business-requirements-analyst.skill](https://github.com/TU-USUARIO/business-requirements-analyst-skill/releases/latest)
+1. Descarga el archivo [business-requirements-analyst.skill](https://github.com/gmdaos/business-requirements-analyst-skill/releases/latest)
 2. Ve a **Settings** → **Features** → **Skills**
 3. Haz clic en **Upload Custom Skill**
 4. Selecciona el archivo `.skill`
@@ -239,7 +239,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 🙏 Créditos
 
-Desarrollado por [Tu Nombre]
+Desarrollado por [Gabriel Mayon](https://github.com/gmdaos)
 
 Basado en metodologías de:
 
@@ -251,9 +251,9 @@ Basado en metodologías de:
 
 ## 📞 Soporte
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/TU-USUARIO/business-requirements-analyst-skill/issues)
-- 💬 **Discusiones**: [GitHub Discussions](https://github.com/TU-USUARIO/business-requirements-analyst-skill/discussions)
-- 📧 **Email**: tu-email@ejemplo.com
+- 🐛 **Issues**: [GitHub Issues](https://github.com/gmdaos/business-requirements-analyst-skill/issues)
+- 💬 **Discusiones**: [GitHub Discussions](https://github.com/gmdaos/business-requirements-analyst-skill/discussions)
+- 📧 **Email**: gmgmdaos@gmail.com
 
 ---
 
