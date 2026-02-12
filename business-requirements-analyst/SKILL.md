@@ -1,6 +1,10 @@
 ---
 name: business-requirements-analyst
 description: Complete methodology for software and business requirements gathering. Use when you need to document a new project, validate a business idea, create technical specifications, or generate complete documentation covering business vision, stakeholders, processes, functional and non-functional requirements, data model, integrations, risks, and roadmap. Ideal for projects requiring quoting, development, delegation, or presentation to investors.
+license: MIT
+metadata:
+  author: github.com/gmdaos
+  version: '2.0.0'
 ---
 
 # Requirements Gathering
