@@ -1,489 +1,489 @@
 ---
 name: business-requirements-analyst
-description: Metodología completa para levantamiento de requerimientos de software y negocios. Usar cuando se necesite documentar un proyecto nuevo, validar una idea de negocio, crear especificaciones técnicas, o generar documentación completa que cubra visión de negocio, stakeholders, procesos, requerimientos funcionales y no funcionales, modelo de datos, integraciones, riesgos y roadmap. Ideal para proyectos que requieren cotización, desarrollo, delegación o presentación a inversores.
+description: Complete methodology for software and business requirements gathering. Use when you need to document a new project, validate a business idea, create technical specifications, or generate complete documentation covering business vision, stakeholders, processes, functional and non-functional requirements, data model, integrations, risks, and roadmap. Ideal for projects requiring quoting, development, delegation, or presentation to investors.
 ---
 
-# Requirements Gathering - Levantamiento de Requerimientos
+# Requirements Gathering
 
-Este Skill proporciona una metodología profesional y completa para realizar levantamiento de requerimientos que cubra todas las capas del negocio, no solo "la app" o "el sistema".
+This Skill provides a professional and complete methodology for conducting requirements gathering that covers all business layers, not just "the app" or "the system."
 
-## Principio Fundamental
+## Fundamental Principle
 
-**El levantamiento de requerimientos NO es solo una lista de funcionalidades.**
+**Requirements gathering is NOT just a list of functionalities.**
 
-Un buen levantamiento cubre todas las capas del negocio:
+Good requirements gathering covers all business layers:
 
-- 🧠 Idea y objetivo
-- 👥 Usuarios
-- 💼 Operación
-- 💰 Dinero
-- ⚙️ Tecnología
-- ⚠️ Riesgos
-- 📈 Crecimiento
+- 🧠 Idea and objective
+- 👥 Users
+- 💼 Operation
+- 💰 Money
+- ⚙️ Technology
+- ⚠️ Risks
+- 📈 Growth
 
-## Metodologías Disponibles
+## Available Methodologies
 
-### 1. Design Thinking (para ideas nuevas)
+### 1. Design Thinking (for new ideas)
 
-**Ideal cuando:**
+**Ideal when:**
 
-- La idea aún se está validando
-- No tienes todo claro
-- Quieres entender al usuario de verdad
+- The idea is still being validated
+- Not everything is clear
+- You want to truly understand the user
 
-**Fases:**
+**Phases:**
 
-1. **Empatizar** - Entender a los usuarios
-2. **Definir** - Identificar problemas clave
-3. **Idear** - Generar soluciones
-4. **Prototipar** - Crear versiones tempranas
-5. **Testear** - Validar con usuarios reales
+1. **Empathize** - Understand users
+2. **Define** - Identify key problems
+3. **Ideate** - Generate solutions
+4. **Prototype** - Create early versions
+5. **Test** - Validate with real users
 
-**Nota:** Sirve para descubrir qué construir, no para documentarlo todo.
+**Note:** Used to discover what to build, not to document everything.
 
-### 2. Análisis de Negocio (Business Analysis - BABOK)
+### 2. Business Analysis (BABOK)
 
-**El más completo y profesional.**
+**The most complete and professional.**
 
-**Cubre:**
+**Covers:**
 
-- Requerimientos del negocio
-- Requerimientos funcionales
-- Requerimientos no funcionales
-- Reglas del negocio
+- Business requirements
+- Functional requirements
+- Non-functional requirements
+- Business rules
 - Stakeholders
-- Procesos
+- Processes
 
-**Nota:** Este es el que se usa para crear documentos formales.
+**Note:** This is what's used to create formal documents.
 
-### 3. Lean / Startup Canvas (visión rápida)
+### 3. Lean / Startup Canvas (quick vision)
 
-**Sirve para:**
+**Useful for:**
 
-- Ordenar la idea
-- Ver si el negocio tiene sentido
+- Organizing the idea
+- Seeing if the business makes sense
 
-**⚠️ Importante:** NO reemplaza el levantamiento de requerimientos completo.
+**⚠️ Important:** DOES NOT replace complete requirements gathering.
 
-## Enfoque Recomendado
+## Recommended Approach
 
-Combinar 3 elementos clave:
+Combine 3 key elements:
 
-1. **Visión de negocio**
-2. **Procesos**
-3. **Sistema / producto**
+1. **Business vision**
+2. **Processes**
+3. **System / product**
 
-Y documentarlo todo en un **artefacto maestro único**.
+And document everything in a **single master artifact**.
 
-## Estructura del Documento Completo de Requerimientos
+## Structure of the Complete Requirements Document
 
-### 📌 1. Visión del Negocio
+### 📌 1. Business Vision
 
-Incluir:
+Include:
 
-- **Problema que resuelve** - ¿Qué dolor o necesidad atiende?
-- **Propuesta de valor** - ¿Por qué es mejor que las alternativas?
-- **Objetivo del negocio** - Metas claras y medibles
-- **KPIs principales** - Métricas de éxito
-- **Alcance** - Qué SÍ y qué NO está incluido
+- **Problem solved** - What pain or need does it address?
+- **Value proposition** - Why is it better than alternatives?
+- **Business objective** - Clear and measurable goals
+- **Main KPIs** - Success metrics
+- **Scope** - What IS and what is NOT included
 
-**Ejemplo de formato:**
+**Format example:**
 
 ```markdown
-## Visión del Negocio
+## Business Vision
 
-### Problema
+### Problem
 
-[Descripción del problema que se resuelve]
+[Description of the problem being solved]
 
-### Propuesta de Valor
+### Value Proposition
 
-[Qué hace único a este producto/servicio]
+[What makes this product/service unique]
 
-### Objetivos
+### Objectives
 
-- Objetivo 1: [Descripción]
-- Objetivo 2: [Descripción]
+- Objective 1: [Description]
+- Objective 2: [Description]
 
 ### KPIs
 
-- KPI 1: [Métrica específica]
-- KPI 2: [Métrica específica]
+- KPI 1: [Specific metric]
+- KPI 2: [Specific metric]
 
-### Alcance
+### Scope
 
-**Incluye:**
+**Includes:**
 
-- [Elemento 1]
-- [Elemento 2]
+- [Element 1]
+- [Element 2]
 
-**No incluye:**
+**Does not include:**
 
-- [Elemento 1]
-- [Elemento 2]
+- [Element 1]
+- [Element 2]
 ```
 
 ### 📌 2. Stakeholders
 
-Identificar todos los actores involucrados:
+Identify all involved actors:
 
-- **Dueños del negocio** - Quiénes toman decisiones
-- **Usuarios finales** - Quiénes usarán el sistema
-- **Administradores** - Quiénes gestionarán el sistema
-- **Proveedores** - Servicios o productos externos
-- **Terceros** - Pagos, logística, integraciones, etc.
+- **Business owners** - Who makes decisions
+- **End users** - Who will use the system
+- **Administrators** - Who will manage the system
+- **Suppliers** - External services or products
+- **Third parties** - Payments, logistics, integrations, etc.
 
-**Formato sugerido:**
+**Suggested format:**
 
 ```markdown
 ## Stakeholders
 
-| Tipo    | Nombre/Rol | Interés           | Influencia        |
-| ------- | ---------- | ----------------- | ----------------- |
-| Dueño   | [Nombre]   | [Alto/Medio/Bajo] | [Alta/Media/Baja] |
-| Usuario | [Tipo]     | [Alto/Medio/Bajo] | [Alta/Media/Baja] |
+| Type  | Name/Role | Interest          | Influence         |
+| ----- | --------- | ----------------- | ----------------- |
+| Owner | [Name]    | [High/Medium/Low] | [High/Medium/Low] |
+| User  | [Type]    | [High/Medium/Low] | [High/Medium/Low] |
 ```
 
-### 📌 3. Tipos de Usuarios (Personas)
+### 📌 3. User Types (Personas)
 
-Para cada tipo de usuario, documentar:
+For each user type, document:
 
-- **Qué necesita** - Funcionalidades clave
-- **Qué dolor tiene** - Problemas actuales
-- **Qué espera del sistema** - Expectativas
+- **What they need** - Key functionalities
+- **What pain they have** - Current problems
+- **What they expect from the system** - Expectations
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
 ## Personas
 
-### Cliente Final
+### End Customer
 
-- **Necesita:** Realizar compras rápidas y seguras
-- **Dolor:** Procesos de pago complicados
-- **Espera:** Checkout en menos de 3 clics
+- **Needs:** Make fast and secure purchases
+- **Pain:** Complicated checkout processes
+- **Expectation:** Checkout in less than 3 clicks
 
-### Administrador
+### Administrator
 
-- **Necesita:** Gestionar inventario y pedidos
-- **Dolor:** Falta de visibilidad en tiempo real
-- **Espera:** Dashboard con métricas actualizadas
+- **Needs:** Manage inventory and orders
+- **Pain:** Lack of real-time visibility
+- **Expectation:** Dashboard with updated metrics
 ```
 
-### 📌 4. Procesos del Negocio
+### 📌 4. Business Processes
 
-**⚠️ MUY IMPORTANTE - Aquí muchos fallan.**
+**⚠️ VERY IMPORTANT - This is where many fail.**
 
-Documentar flujos completos:
+Document complete flows:
 
-- Cómo entra un cliente
-- Cómo se genera una venta
-- Cómo se cobra
-- Qué pasa si falla el pago
-- Cómo se atiende un reclamo
+- How a customer enters
+- How a sale is generated
+- How payment is collected
+- What happens if the payment fails
+- How a claim is handled
 
-**Expresar como flujos paso a paso:**
+**Express as step-by-step flows:**
 
 ```markdown
-## Proceso: Compra de Producto
+## Process: Product Purchase
 
-1. Usuario navega catálogo
-2. Usuario agrega productos al carrito
-3. Usuario procede al checkout
-4. Sistema valida disponibilidad
-5. Usuario ingresa datos de pago
-6. Sistema procesa pago
-   - **Si éxito:** Confirma pedido y envía email
-   - **Si falla:** Muestra error y permite reintentar
-7. Sistema genera orden de envío
-8. Usuario recibe confirmación
+1. User browses catalog
+2. User adds products to cart
+3. User proceeds to checkout
+4. System validates availability
+5. User enters payment details
+6. System processes payment
+   - **If success:** Confirms order and sends email
+   - **If failure:** Shows error and allows retry
+7. System generates shipping order
+8. User receives confirmation
 ```
 
-Para procesos complejos, ver [references/process-mapping.md](references/process-mapping.md).
+For complex processes, see [references/process-mapping.md](references/process-mapping.md).
 
-### 📌 5. Requerimientos Funcionales
+### 📌 5. Functional Requirements
 
-Formato estándar:
+Standard format:
 
-- **RF-01:** El sistema debe permitir...
-- **RF-02:** El usuario podrá...
+- **FR-01:** The system must allow...
+- **FR-02:** The user will be able to...
 
-**Categorías comunes:**
+**Common categories:**
 
-- Registro de usuarios
-- Gestión de pedidos
-- Pagos
-- Notificaciones
-- Reportes
+- User registration
+- Order management
+- Payments
+- Notifications
+- Reports
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## Requerimientos Funcionales
+## Functional Requirements
 
-### Autenticación
+### Authentication
 
-- **RF-01:** El sistema debe permitir registro con email y contraseña
-- **RF-02:** El sistema debe enviar email de verificación
-- **RF-03:** El usuario podrá recuperar contraseña olvidada
+- **FR-01:** The system must allow registration with email and password
+- **FR-02:** The system must send a verification email
+- **FR-03:** The user will be able to recover a forgotten password
 
-### Gestión de Pedidos
+### Order Management
 
-- **RF-04:** El usuario podrá ver historial de pedidos
-- **RF-05:** El sistema debe permitir cancelar pedidos en estado "pendiente"
+- **FR-04:** The user will be able to view order history
+- **FR-05:** The system must allow canceling orders in "pending" status
 ```
 
-### 📌 6. Requerimientos No Funcionales
+### 📌 6. Non-Functional Requirements
 
-**Esto separa lo amateur de lo profesional.**
+**This separates the amateur from the professional.**
 
-Áreas clave:
+Key areas:
 
-- **Seguridad** - Autenticación, autorización, encriptación
-- **Rendimiento** - Tiempos de respuesta, capacidad
-- **Escalabilidad** - Crecimiento esperado
-- **Disponibilidad** - Uptime, redundancia
-- **Cumplimiento legal** - GDPR, protección de datos
-- **UX / Usabilidad** - Accesibilidad, responsive
+- **Security** - Authentication, authorization, encryption
+- **Performance** - Response times, capacity
+- **Scalability** - Expected growth
+- **Availability** - Uptime, redundancy
+- **Legal compliance** - GDPR, data protection
+- **UX / Usability** - Accessibility, responsive
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## Requerimientos No Funcionales
+## Non-Functional Requirements
 
-### Rendimiento
+### Performance
 
-- **RNF-01:** El sistema debe responder en < 2 segundos para el 95% de las peticiones
-- **RNF-02:** El sistema debe soportar 1000 usuarios concurrentes
+- **NFR-01:** The system must respond in < 2 seconds for 95% of requests
+- **NFR-02:** The system must support 1000 concurrent users
 
-### Seguridad
+### Security
 
-- **RNF-03:** Todas las contraseñas deben estar hasheadas con bcrypt
-- **RNF-04:** Las comunicaciones deben usar HTTPS/TLS 1.3
+- **NFR-03:** All passwords must be hashed with bcrypt
+- **NFR-04:** Communications must use HTTPS/TLS 1.3
 
-### Cumplimiento
+### Compliance
 
-- **RNF-05:** El sistema debe cumplir con GDPR para datos de usuarios europeos
+- **NFR-05:** The system must comply with GDPR for European user data
 ```
 
-### 📌 7. Reglas del Negocio
+### 📌 7. Business Rules
 
-Lógica específica del dominio:
+Domain-specific logic:
 
-**Ejemplos:**
+**Examples:**
 
 ```markdown
-## Reglas del Negocio
+## Business Rules
 
-- **RN-01:** Un pedido no puede cancelarse después de 30 minutos de creado
-- **RN-02:** Un usuario solo puede tener un plan activo a la vez
-- **RN-03:** Las comisiones se calculan como 5% del monto total
-- **RN-04:** Los impuestos se aplican según la región del comprador
+- **BR-01:** An order cannot be canceled after 30 minutes of creation
+- **BR-02:** A user can only have one active plan at a time
+- **BR-03:** Commissions are calculated as 5% of the total amount
+- **BR-04:** Taxes are applied according to the buyer's region
 ```
 
-### 📌 8. Modelo de Datos (Alto Nivel)
+### 📌 8. Data Model (High Level)
 
-**Conceptual, no SQL aún.**
+**Conceptual, not SQL yet.**
 
-Documentar:
+Document:
 
-- **Entidades principales** - Usuario, Pedido, Producto, etc.
-- **Relaciones** - Uno a muchos, muchos a muchos
-- **Datos críticos** - Campos esenciales
+- **Primary entities** - User, Order, Product, etc.
+- **Relationships** - One to many, many to many
+- **Critical data** - Essential fields
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## Modelo de Datos
+## Data Model
 
-### Entidades Principales
+### Primary Entities
 
-**Usuario**
+**User**
 
 - id (PK)
-- email (único)
-- nombre
-- fecha_registro
+- email (unique)
+- name
+- registration_date
 
-**Pedido**
+**Order**
 
 - id (PK)
-- usuario_id (FK)
-- estado
+- user_id (FK)
+- status
 - total
-- fecha_creacion
+- creation_date
 
-**Producto**
+**Product**
 
 - id (PK)
-- nombre
-- precio
+- name
+- price
 - stock
 
-### Relaciones
+### Relationships
 
-- Un Usuario puede tener muchos Pedidos (1:N)
-- Un Pedido puede contener muchos Productos (N:M)
+- A User can have many Orders (1:N)
+- An Order can contain many Products (N:M)
 ```
 
-Para modelos complejos, ver [references/data-modeling.md](references/data-modeling.md).
+For complex models, see [references/data-modeling.md](references/data-modeling.md).
 
-### 📌 9. Integraciones
+### 📌 9. Integrations
 
-Servicios externos necesarios:
+Necessary external services:
 
-- **Pasarelas de pago** - Stripe, PayPal, etc.
-- **APIs externas** - Servicios de terceros
-- **Servicios de terceros** - Email, SMS, analytics
+- **Payment gateways** - Stripe, PayPal, etc.
+- **External APIs** - Third-party services
+- **Third-party services** - Email, SMS, analytics
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## Integraciones
+## Integrations
 
-### Pasarela de Pago
+### Payment Gateway
 
-- **Proveedor:** Stripe
-- **Funcionalidad:** Procesamiento de tarjetas de crédito
-- **Datos intercambiados:** Monto, moneda, token de tarjeta
+- **Provider:** Stripe
+- **Functionality:** Credit card processing
+- **Data exchanged:** Amount, currency, card token
 
-### Servicio de Email
+### Email Service
 
-- **Proveedor:** SendGrid
-- **Funcionalidad:** Envío de notificaciones
-- **Datos intercambiados:** Destinatario, asunto, cuerpo HTML
+- **Provider:** SendGrid
+- **Functionality:** Sending notifications
+- **Data exchanged:** Recipient, subject, HTML body
 ```
 
-### 📌 10. Riesgos y Supuestos
+### 📌 10. Risks and Assumptions
 
-Identificar potenciales problemas:
+Identify potential problems:
 
-- **Riesgos técnicos** - Dependencias, escalabilidad
-- **Riesgos legales** - Cumplimiento, privacidad
-- **Suposiciones del negocio** - Asunciones que deben validarse
+- **Technical risks** - Dependencies, scalability
+- **Legal risks** - Compliance, privacy
+- **Business assumptions** - Assumptions that must be validated
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## Riesgos
+## Risks
 
-### Técnicos
+### Technical
 
-- **R-01:** Dependencia de API externa puede causar downtime
-  - _Mitigación:_ Implementar sistema de caché y fallback
+- **R-01:** Dependency on external API may cause downtime
+  - _Mitigation:_ Implement caching and fallback system
 
-### Legales
+### Legal
 
-- **R-02:** Cambios en regulación de protección de datos
-  - _Mitigación:_ Diseño modular para adaptación rápida
+- **R-02:** Changes in data protection regulation
+  - _Mitigation:_ Modular design for rapid adaptation
 
-## Supuestos
+## Assumptions
 
-- **S-01:** Los usuarios tienen acceso a internet estable
-- **S-02:** El volumen inicial no excederá 10,000 usuarios
+- **S-01:** Users have stable internet access
+- **S-02:** Initial volume will not exceed 10,000 users
 ```
 
-### 📌 11. Roadmap / Fases
+### 📌 11. Roadmap / Phases
 
-Dividir en etapas manejables:
+Divide into manageable stages:
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
 ## Roadmap
 
-### MVP (Fase 1) - 3 meses
+### MVP (Phase 1) - 3 months
 
-- Registro y autenticación
-- Catálogo de productos
-- Carrito de compras
-- Pago básico con Stripe
+- Registration and authentication
+- Product catalog
+- Shopping cart
+- Basic payment with Stripe
 
-### Fase 2 - 2 meses
+### Phase 2 - 2 months
 
-- Sistema de notificaciones
-- Historial de pedidos
-- Panel de administración básico
+- Notifications system
+- Order history
+- Basic administration panel
 
-### Fase 3 - 3 meses
+### Phase 3 - 3 months
 
-- Reportes avanzados
-- Integración con logística
-- Sistema de recomendaciones
+- Advanced reports
+- Logistics integration
+- Recommendations system
 ```
 
-## Proceso de Levantamiento (Paso a Paso)
+## Gathering Process (Step by Step)
 
-### 1. Entrevistas
+### 1. Interviews
 
-**Aunque seas tú mismo el stakeholder**, realiza el ejercicio de responder:
+**Even if you are the stakeholder yourself**, perform the exercise of answering:
 
-- ¿Qué problema resuelve esto?
-- ¿Quiénes lo usarán?
-- ¿Cómo lo usarán?
-- ¿Qué alternativas existen?
-- ¿Por qué esto es mejor?
+- What problem does this solve?
+- Who will use it?
+- How will they use it?
+- What alternatives exist?
+- Why is this better?
 
-### 2. Preguntas Incómodas
+### 2. Uncomfortable Questions
 
-**Fundamental para descubrir edge cases:**
+**Fundamental for discovering edge cases:**
 
-- ¿Qué pasa si falla el pago?
-- ¿Qué pasa si el usuario pierde conexión?
-- ¿Qué pasa si hay datos duplicados?
-- ¿Qué pasa si el servicio externo está caído?
+- What happens if the payment fails?
+- What happens if the user loses connection?
+- What happens if there is duplicate data?
+- What happens if the external service is down?
 
-### 3. Diagramar Flujos
+### 3. Diagram Flows
 
-Crear diagramas visuales de:
+Create visual diagrams of:
 
-- Flujos de usuario (user flows)
-- Procesos de negocio (business processes)
-- Arquitectura del sistema (system architecture)
+- User flows
+- Business processes
+- System architecture
 
-### 4. Escribir → Validar → Ajustar
+### 4. Write → Validate → Adjust
 
-**Proceso iterativo:**
+**Iterative process:**
 
-1. Escribir primera versión del documento
-2. Revisar con stakeholders
-3. Identificar gaps y ambigüedades
-4. Ajustar y refinar
-5. Repetir hasta tener consenso
+1. Write the first version of the document
+2. Review with stakeholders
+3. Identify gaps and ambiguities
+4. Adjust and refine
+5. Repeat until consensus is reached
 
-### 5. Documento Vivo
+### 5. Living Document
 
-**Mantener actualizado:**
+**Keep it updated:**
 
-- Usar formato Markdown para versionado
-- Herramientas: Notion, Confluence, GitHub Wiki
-- Actualizar cuando cambien requerimientos
+- Use Markdown format for versioning
+- Tools: Notion, Confluence, GitHub Wiki
+- Update when requirements change
 
-## Plantilla Completa
+## Complete Template
 
-Para una plantilla lista para usar, ver [assets/requirements-template.md](assets/requirements-template.md).
+For a ready-to-use template, see [assets/requirements-template.md](assets/requirements-template.md).
 
-## Resultado Final
+## Final Result
 
-Cuando terminas el levantamiento completo, tienes:
+When you finish the complete gathering, you have:
 
-- ✅ **Documento para desarrollar** - Especificaciones claras
-- ✅ **Base para cotizar** - Alcance definido
-- ✅ **Guía para delegar** - Instrucciones completas
-- ✅ **Material para presentar** - A socios o inversionistas
+- ✅ **Document for development** - Clear specifications
+- ✅ **Basis for quoting** - Defined scope
+- ✅ **Guide for delegating** - Complete instructions
+- ✅ **Material to present** - To partners or investors
 
-## Consejos Importantes
+## Important Tips
 
-1. **No empieces escribiendo requerimientos** - Empieza entendiendo el negocio como si ya existiera
-2. **Sé específico** - "Rápido" no es un requerimiento, "< 2 segundos" sí lo es
-3. **Incluye el "por qué"** - No solo el "qué", también la razón detrás
-4. **Documenta decisiones** - Por qué se eligió X tecnología o enfoque
-5. **Mantén actualizado** - Un documento desactualizado es peor que no tener documento
+1. **Don't start by writing requirements** - Start by understanding the business as if it already existed
+2. **Be specific** - "Fast" is not a requirement, "< 2 seconds" is
+3. **Include the "why"** - Not just the "what," but the reason behind it
+4. **Document decisions** - Why a certain technology or approach was chosen
+5. **Keep updated** - An outdated document is worse than no document at all
 
-## Referencias Adicionales
+## Additional References
 
-Para técnicas avanzadas y ejemplos específicos:
+For advanced techniques and specific examples:
 
-- **Mapeo de procesos complejos:** [references/process-mapping.md](references/process-mapping.md)
-- **Modelado de datos avanzado:** [references/data-modeling.md](references/data-modeling.md)
-- **Casos de uso detallados:** [references/use-cases.md](references/use-cases.md)
+- **Complex process mapping:** [references/process-mapping.md](references/process-mapping.md)
+- **Advanced data modeling:** [references/data-modeling.md](references/data-modeling.md)
+- **Detailed use cases:** [references/use-cases.md](references/use-cases.md)

@@ -1,513 +1,513 @@
-# Casos de Uso Detallados
+# Detailed Use Cases
 
-Este documento proporciona guías y plantillas para documentar casos de uso de forma profesional.
+This document provides guides and templates for documenting use cases professionally.
 
-## ¿Qué es un Caso de Uso?
+## What is a Use Case?
 
-Un caso de uso describe cómo un actor (usuario o sistema) interactúa con el sistema para lograr un objetivo específico.
+A use case describes how an actor (user or system) interacts with the system to achieve a specific goal.
 
-**Componentes clave:**
+**Key components:**
 
-- **Actor:** Quién inicia la interacción
-- **Objetivo:** Qué quiere lograr
-- **Precondiciones:** Estado necesario antes de empezar
-- **Flujo principal:** Pasos normales de ejecución
-- **Flujos alternativos:** Variaciones del flujo principal
-- **Postcondiciones:** Estado del sistema después de completar
+- **Actor:** Who initiates the interaction
+- **Goal:** What they want to achieve
+- **Preconditions:** Necessary state before starting
+- **Main Flow:** Normal execution steps
+- **Alternative Flows:** Variations of the main flow
+- **Postconditions:** System state after completion
 
-## Formato Estándar de Caso de Uso
+## Standard Use Case Format
 
-### Plantilla Básica
+### Basic Template
 
 ```markdown
-## CU-[ID]: [Nombre del Caso de Uso]
+## UC-[ID]: [Use Case Name]
 
-**Actor principal:** [Nombre del actor]
-**Objetivo:** [Qué quiere lograr el actor]
-**Precondiciones:** [Condiciones que deben cumplirse antes]
+**Primary Actor:** [Actor Name]
+**Goal:** [What the actor wants to achieve]
+**Preconditions:** [Conditions that must be met beforehand]
 
-### Flujo Principal
+### Main Flow
 
-1. [Paso 1]
-2. [Paso 2]
-3. [Paso 3]
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
    ...
 
-### Flujos Alternativos
+### Alternative Flows
 
-**FA-[ID]: [Nombre del flujo alternativo]**
+**AF-[ID]: [Alternative flow name]**
 
-- **Trigger:** [Cuándo se activa]
-- **Pasos:**
-  1. [Paso 1]
-  2. [Paso 2]
+- **Trigger:** [When it activates]
+- **Steps:**
+  1. [Step 1]
+  2. [Step 2]
      ...
 
-### Excepciones
+### Exceptions
 
-**EX-[ID]: [Nombre de la excepción]**
+**EX-[ID]: [Exception name]**
 
-- **Condición:** [Cuándo ocurre]
-- **Acción:** [Qué hacer]
+- **Condition:** [When it occurs]
+- **Action:** [What to do]
 
-### Postcondiciones
+### Postconditions
 
-**Éxito:** [Estado del sistema si todo sale bien]
-**Fallo:** [Estado del sistema si falla]
+**Success:** [System state if everything goes well]
+**Failure:** [System state if it fails]
 
-### Reglas de Negocio
+### Business Rules
 
-- **RN-[ID]:** [Regla aplicable]
+- **BR-[ID]:** [Applicable rule]
 
-### Requerimientos Relacionados
+### Related Requirements
 
-- RF-[ID]: [Requerimiento funcional]
-- RNF-[ID]: [Requerimiento no funcional]
+- FR-[ID]: [Functional requirement]
+- NFR-[ID]: [Non-functional requirement]
 ```
 
-## Niveles de Detalle
+## Detail Levels
 
-### Nivel 1: Alto Nivel (Brief)
+### Level 1: High Level (Brief)
 
-**Cuándo usar:** Documentación inicial, presentaciones ejecutivas.
+**When to use:** Initial documentation, executive presentations.
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## CU-001: Comprar Producto
+## UC-001: Buy Product
 
-**Actor:** Cliente
-**Objetivo:** Adquirir un producto del catálogo
+**Actor:** Customer
+**Goal:** To acquire a product from the catalog
 
-El cliente navega el catálogo, selecciona productos, los agrega al carrito,
-procede al checkout, ingresa información de pago y envío, y confirma la compra.
+The customer browses the catalog, selects products, adds them to the cart,
+proceeds to checkout, enters payment and shipping information, and confirms the purchase.
 ```
 
-### Nivel 2: Casual (Casual)
+### Level 2: Casual
 
-**Cuándo usar:** Planificación, discusiones de equipo.
+**When to use:** Planning, team discussions.
 
-**Ejemplo:**
+**Example:**
 
 ```markdown
-## CU-001: Comprar Producto
+## UC-001: Buy Product
 
-**Actor:** Cliente
-**Objetivo:** Adquirir un producto del catálogo
+**Actor:** Customer
+**Goal:** To acquire a product from the catalog
 
-### Flujo Principal
+### Main Flow
 
-1. Cliente navega catálogo de productos
-2. Cliente selecciona producto y lo agrega al carrito
-3. Cliente procede al checkout
-4. Cliente ingresa información de envío
-5. Cliente selecciona método de pago
-6. Cliente confirma la compra
-7. Sistema procesa el pago
-8. Sistema confirma el pedido y envía email
+1. Customer browses product catalog
+2. Customer selects product and adds it to the cart
+3. Customer proceeds to checkout
+4. Customer enters shipping information
+5. Customer selects payment method
+6. Customer confirms the purchase
+7. System processes the payment
+8. System confirms the order and sends an email
 ```
 
-### Nivel 3: Completamente Detallado (Fully Dressed)
+### Level 3: Fully Dressed
 
-**Cuándo usar:** Desarrollo, QA, documentación formal.
+**When to use:** Development, QA, formal documentation.
 
-**Ejemplo completo a continuación.**
+**Complete example below.**
 
-## Ejemplo Completo: Caso de Uso Detallado
+## Complete Example: Detailed Use Case
 
 ```markdown
-## CU-001: Realizar Compra de Producto
+## UC-001: Purchase Product
 
-**ID:** CU-001
-**Nombre:** Realizar Compra de Producto
-**Actor principal:** Cliente registrado
-**Actores secundarios:** Sistema de pagos (Stripe), Sistema de email (SendGrid)
-**Objetivo:** Permitir al cliente comprar productos del catálogo
-**Nivel:** Usuario
-**Alcance:** Sistema de e-commerce
+**ID:** UC-001
+**Name:** Purchase Product
+**Primary Actor:** Registered customer
+**Secondary Actors:** Payment System (Stripe), Email System (SendGrid)
+**Goal:** To allow the customer to buy products from the catalog
+**Level:** User
+**Scope:** E-commerce system
 
-### Precondiciones
+### Preconditions
 
-- El cliente debe estar autenticado
-- Debe existir al menos un producto con stock disponible
-- El sistema de pagos debe estar operativo
+- The customer must be authenticated
+- At least one product with available stock must exist
+- The payment system must be operational
 
-### Garantías Mínimas (si falla)
+### Minimum Guarantees (if it fails)
 
-- No se cobra al cliente
-- El stock no se reduce
-- Se registra el intento fallido en logs
+- The customer is not charged
+- Stock is not reduced
+- The failed attempt is recorded in logs
 
-### Garantías de Éxito
+### Success Guarantees
 
-- Se crea un pedido confirmado
-- Se reduce el stock de productos
-- Se cobra al cliente
-- Se envía email de confirmación
-- Se genera orden de envío
+- A confirmed order is created
+- Product stock is reduced
+- The customer is charged
+- A confirmation email is sent
+- A shipping order is generated
 
-### Flujo Principal (Escenario de Éxito)
+### Main Flow (Success Scenario)
 
-1. Cliente accede a la página de catálogo
-2. Sistema muestra productos disponibles con:
-   - Imagen
-   - Nombre
-   - Precio
-   - Indicador de stock
-3. Cliente busca/filtra productos (opcional)
-4. Sistema actualiza listado según criterios
-5. Cliente selecciona un producto
-6. Sistema muestra detalle del producto:
-   - Descripción completa
-   - Imágenes adicionales
-   - Reseñas de otros clientes
-   - Stock disponible
-7. Cliente selecciona cantidad deseada
-8. Cliente hace clic en "Agregar al carrito"
-9. Sistema valida stock disponible
-10. Sistema agrega producto al carrito
-11. Sistema muestra notificación de confirmación
-12. Cliente continúa comprando (volver a paso 3) o procede al checkout
-13. Cliente hace clic en "Proceder al pago"
-14. Sistema muestra resumen del carrito:
-    - Lista de productos
-    - Cantidades
-    - Precios unitarios
+1. Customer accesses the catalog page
+2. System shows available products with:
+   - Image
+   - Name
+   - Price
+   - Stock indicator
+3. Customer searches/filters products (optional)
+4. System updates list according to criteria
+5. Customer selects a product
+6. System shows product details:
+   - Full description
+   - Additional images
+   - Reviews from other customers
+   - Available stock
+7. Customer selects desired quantity
+8. Customer clicks "Add to cart"
+9. System validates available stock
+10. System adds product to the cart
+11. System shows confirmation notification
+12. Customer continues shopping (back to step 3) or proceeds to checkout
+13. Customer clicks "Proceed to payment"
+14. System shows cart summary:
+    - List of products
+    - Quantities
+    - Unit prices
     - Subtotal
-    - Impuestos
+    - Taxes
     - Total
-15. Cliente revisa y hace clic en "Continuar"
-16. Sistema solicita dirección de envío
-17. Cliente selecciona dirección guardada o ingresa nueva:
-    - Nombre completo
-    - Calle y número
-    - Ciudad
-    - Código postal
-    - País
-18. Sistema valida formato de dirección
-19. Cliente hace clic en "Continuar"
-20. Sistema muestra métodos de pago disponibles:
-    - Tarjeta de crédito/débito
+15. Customer reviews and clicks "Continue"
+16. System requests shipping address
+17. Customer selects a saved address or enters a new one:
+    - Full name
+    - Street and number
+    - City
+    - Zip code
+    - Country
+18. System validates address format
+19. Customer clicks "Continue"
+20. System shows available payment methods:
+    - Credit/Debit card
     - PayPal
-    - Transferencia bancaria
-21. Cliente selecciona "Tarjeta de crédito"
-22. Sistema muestra formulario de pago (Stripe)
-23. Cliente ingresa datos de tarjeta:
-    - Número de tarjeta
-    - Fecha de vencimiento
+    - Bank transfer
+21. Customer selects "Credit card"
+22. System shows payment form (Stripe)
+23. Customer enters card details:
+    - Card number
+    - Expiration date
     - CVV
-    - Nombre del titular
-24. Sistema valida formato de datos
-25. Cliente hace clic en "Confirmar compra"
-26. Sistema muestra pantalla de "Procesando..."
-27. Sistema crea pedido en estado "pendiente_pago"
-28. Sistema reserva stock de productos
-29. Sistema envía solicitud de pago a Stripe con:
-    - Monto total
-    - Datos de tarjeta (tokenizados)
-    - Descripción del pedido
-30. Stripe procesa el pago
-31. Stripe retorna confirmación de pago exitoso
-32. Sistema actualiza pedido a estado "pagado"
-33. Sistema reduce stock de productos
-34. Sistema genera registro de pago
-35. Sistema crea orden de envío
-36. Sistema envía email de confirmación vía SendGrid con:
-    - Número de pedido
-    - Resumen de productos
-    - Dirección de envío
-    - Monto total
-    - Enlace de seguimiento
-37. Sistema muestra página de confirmación con:
-    - Mensaje de éxito
-    - Número de pedido
-    - Tiempo estimado de entrega
-38. **Fin del caso de uso**
+    - Cardholder's name
+24. System validates data format
+25. Customer clicks "Confirm purchase"
+26. System shows "Processing..." screen
+27. System creates order in "pending_payment" status
+28. System reserves product stock
+29. System sends payment request to Stripe with:
+    - Total amount
+    - Card details (tokenized)
+    - Order description
+30. Stripe processes the payment
+31. Stripe returns success confirmation
+32. System updates order status to "paid"
+33. System reduces product stock
+34. System generates payment record
+35. System creates shipping order
+36. System sends confirmation email via SendGrid with:
+    - Order number
+    - Product summary
+    - Shipping address
+    - Total amount
+    - Tracking link
+37. System shows confirmation page with:
+    - Success message
+    - Order number
+    - Estimated delivery time
+38. **End of use case**
 
-### Flujos Alternativos
+### Alternative Flows
 
-#### FA-1: Cliente No Autenticado
+#### AF-1: Unauthenticated Customer
 
-**Trigger:** Paso 1, cliente no está autenticado
+**Trigger:** Step 1, customer is not authenticated
 
-**Pasos:**
+**Steps:**
 
-1. Sistema detecta que no hay sesión activa
-2. Sistema redirige a página de login
-3. Sistema muestra opciones:
-   - Iniciar sesión
-   - Registrarse
-   - Continuar como invitado
-4. Si cliente inicia sesión o se registra:
-   - Continuar en paso 1 del flujo principal
-5. Si cliente continúa como invitado:
-   - Continuar en paso 1 del flujo principal
-   - En paso 17, solicitar también email para confirmación
+1. System detects no active session
+2. System redirects to login page
+3. System shows options:
+   - Log in
+   - Sign up
+   - Continue as guest
+4. If customer logs in or signs up:
+   - Continue at step 1 of the main flow
+5. If customer continues as guest:
+   - Continue at step 1 of the main flow
+   - At step 17, also request email for confirmation
 
-#### FA-2: Producto Sin Stock
+#### AF-2: Product Out of Stock
 
-**Trigger:** Paso 9, stock insuficiente
+**Trigger:** Step 9, insufficient stock
 
-**Pasos:**
+**Steps:**
 
-1. Sistema detecta que stock < cantidad solicitada
-2. Sistema muestra mensaje: "Stock insuficiente. Disponible: [X] unidades"
-3. Sistema ofrece opciones:
-   - Ajustar cantidad a stock disponible
-   - Notificarme cuando haya stock
-   - Cancelar
-4. Si cliente ajusta cantidad:
-   - Continuar en paso 10 con cantidad ajustada
-5. Si cliente solicita notificación:
-   - Sistema registra solicitud de notificación
-   - Volver a paso 3 del flujo principal
-6. Si cliente cancela:
-   - Volver a paso 3 del flujo principal
+1. System detects stock < requested quantity
+2. System shows message: "Insufficient stock. Available: [X] units"
+3. System offers options:
+   - Adjust quantity to available stock
+   - Notify me when in stock
+   - Cancel
+4. If customer adjusts quantity:
+   - Continue at step 10 with adjusted quantity
+5. If customer requests notification:
+   - System records notification request
+   - Back to step 3 of the main flow
+6. If customer cancels:
+   - Back to step 3 of the main flow
 
-#### FA-3: Cliente Usa Dirección Guardada
+#### AF-3: Customer Uses Saved Address
 
-**Trigger:** Paso 17, cliente tiene direcciones guardadas
+**Trigger:** Step 17, customer has saved addresses
 
-**Pasos:**
+**Steps:**
 
-1. Sistema muestra lista de direcciones guardadas
-2. Cliente selecciona una dirección
-3. Sistema pre-llena formulario con datos guardados
-4. Cliente puede editar datos si lo desea
-5. Continuar en paso 19 del flujo principal
+1. System shows list of saved addresses
+2. Customer selects an address
+3. System pre-fills form with saved data
+4. Customer can edit data if desired
+5. Continue at step 19 of the main flow
 
-#### FA-4: Pago con PayPal
+#### AF-4: Payment with PayPal
 
-**Trigger:** Paso 21, cliente selecciona PayPal
+**Trigger:** Step 21, customer selects PayPal
 
-**Pasos:**
+**Steps:**
 
-1. Sistema redirige a página de PayPal
-2. Cliente inicia sesión en PayPal
-3. Cliente autoriza el pago
-4. PayPal redirige de vuelta al sistema con token
-5. Continuar en paso 27 del flujo principal
+1. System redirects to PayPal page
+2. Customer logs in to PayPal
+3. Customer authorizes payment
+4. PayPal redirects back to the system with a token
+5. Continue at step 27 of the main flow
 
-#### FA-5: Cliente Aplica Cupón de Descuento
+#### AF-5: Customer Applies Discount Coupon
 
-**Trigger:** Paso 14, cliente tiene cupón
+**Trigger:** Step 14, customer has a coupon
 
-**Pasos:**
+**Steps:**
 
-1. Cliente hace clic en "Tengo un cupón"
-2. Sistema muestra campo de texto
-3. Cliente ingresa código de cupón
-4. Sistema valida cupón:
-   - Existe
-   - No está expirado
-   - Aplica a los productos del carrito
-   - No ha sido usado (si es de un solo uso)
-5. Sistema aplica descuento
-6. Sistema actualiza totales
-7. Sistema muestra descuento aplicado
-8. Continuar en paso 15 del flujo principal
+1. Customer clicks "I have a coupon"
+2. System shows text field
+3. Customer enters coupon code
+4. System validates coupon:
+   - Exists
+   - Not expired
+   - Applies to cart products
+   - Has not been used (if single-use)
+5. System applies discount
+6. System updates totals
+7. System shows applied discount
+8. Continue at step 15 of the main flow
 
-### Excepciones
+### Exceptions
 
-#### EX-1: Pago Rechazado
+#### EX-1: Payment Rejected
 
-**Condición:** Paso 31, Stripe rechaza el pago
+**Condition:** Step 31, Stripe rejects the payment
 
-**Acción:**
+**Action:**
 
-1. Sistema recibe error de Stripe con razón:
-   - Fondos insuficientes
-   - Tarjeta expirada
-   - Tarjeta bloqueada
-   - Error de validación
-2. Sistema actualiza pedido a estado "pago_fallido"
-3. Sistema libera reserva de stock
-4. Sistema muestra mensaje de error específico al cliente
-5. Sistema ofrece opciones:
-   - Intentar con otra tarjeta
-   - Intentar con otro método de pago
-   - Cancelar compra
-6. Si cliente intenta de nuevo:
-   - Volver a paso 22 del flujo principal
-7. Si cliente cancela:
-   - Sistema marca pedido como "cancelado"
-   - Fin del caso de uso (fallo)
+1. System receives error from Stripe with reason:
+   - Insufficient funds
+   - Expired card
+   - Blocked card
+   - Validation error
+2. System updates order to "failed_payment" status
+3. System releases stock reservation
+4. System shows specific error message to the customer
+5. System offers options:
+   - Try with another card
+   - Try with another payment method
+   - Cancel purchase
+6. If customer tries again:
+   - Back to step 22 of the main flow
+7. If customer cancels:
+   - System marks order as "canceled"
+   - End of use case (failure)
 
-#### EX-2: Error de Comunicación con Stripe
+#### EX-2: Communication Error with Stripe
 
-**Condición:** Paso 29, no hay respuesta de Stripe (timeout)
+**Condition:** Step 29, no response from Stripe (timeout)
 
-**Acción:**
+**Action:**
 
-1. Sistema detecta timeout después de 30 segundos
-2. Sistema registra error en logs
-3. Sistema marca pedido como "pago_pendiente_verificacion"
-4. Sistema muestra mensaje al cliente:
-   "Estamos verificando tu pago. Recibirás un email de confirmación en los próximos minutos."
-5. Sistema programa tarea asíncrona para:
-   - Consultar estado del pago en Stripe cada 1 minuto
-   - Máximo 10 intentos
-6. Si se confirma el pago:
-   - Continuar en paso 32 del flujo principal
-7. Si no se confirma después de 10 intentos:
-   - Sistema marca pedido como "requiere_revision_manual"
-   - Sistema alerta a equipo de operaciones
-   - Sistema envía email al cliente solicitando contacto
+1. System detects timeout after 30 seconds
+2. System records error in logs
+3. System marks order as "payment_pending_verification"
+4. System shows message to the customer:
+   "We are verifying your payment. You will receive a confirmation email in the next few minutes."
+5. System schedules asynchronous task to:
+   - Check payment status in Stripe every 1 minute
+   - Maximum 10 attempts
+6. If payment is confirmed:
+   - Continue at step 32 of the main flow
+7. If not confirmed after 10 attempts:
+   - System marks order as "requires_manual_review"
+   - System alerts operations team
+   - System sends email to customer requesting contact
 
-#### EX-3: Error al Enviar Email
+#### EX-3: Error Sending Email
 
-**Condición:** Paso 36, SendGrid retorna error
+**Condition:** Step 36, SendGrid returns error
 
-**Acción:**
+**Action:**
 
-1. Sistema registra error en logs
-2. Sistema marca email como "pendiente_reenvio"
-3. Sistema programa reintento en 5 minutos
-4. **Importante:** No bloquear el flujo, el pedido ya está confirmado
-5. Continuar en paso 37 del flujo principal
-6. Tarea asíncrona reintenta envío hasta 3 veces
-7. Si falla definitivamente:
-   - Sistema alerta a equipo de operaciones
-   - Email queda disponible en panel de administración para reenvío manual
+1. System records error in logs
+2. System marks email as "pending_resend"
+3. System schedules retry in 5 minutes
+4. **Important:** Do not block the flow; the order is already confirmed
+5. Continue at step 37 of the main flow
+6. Asynchronous task retries sending up to 3 times
+7. If it definitively fails:
+   - System alerts operations team
+   - Email remains available in admin panel for manual resend
 
-#### EX-4: Stock Agotado Durante el Proceso
+#### EX-4: Stock Sold Out During Process
 
-**Condición:** Paso 28, al intentar reservar stock ya no hay disponible
+**Condition:** Step 28, when trying to reserve stock, it's no longer available
 
-**Acción:**
+**Action:**
 
-1. Sistema detecta que otro cliente compró el último stock
-2. Sistema NO procesa el pago
-3. Sistema muestra mensaje:
-   "Lo sentimos, el producto [X] se agotó mientras procesábamos tu pedido."
-4. Sistema ofrece opciones:
-   - Eliminar producto del carrito y continuar con los demás
-   - Notificarme cuando haya stock
-   - Cancelar toda la compra
-5. Si cliente elimina producto:
-   - Sistema actualiza carrito
-   - Volver a paso 14 del flujo principal
-6. Si cliente cancela:
-   - Fin del caso de uso (fallo)
+1. System detects another customer bought the last stock
+2. System DOES NOT process the payment
+3. System shows message:
+   "Sorry, the product [X] sold out while we were processing your order."
+4. System offers options:
+   - Remove product from cart and continue with others
+   - Notify me when in stock
+   - Cancel the entire purchase
+5. If customer removes product:
+   - System updates cart
+   - Back to step 14 of the main flow
+6. If customer cancels:
+   - End of use case (failure)
 
-### Postcondiciones
+### Postconditions
 
-**Éxito:**
+**Success:**
 
-- Existe un pedido en estado "pagado"
-- Stock de productos reducido
-- Pago registrado y confirmado
-- Email de confirmación enviado
-- Orden de envío creada
+- A "paid" order exists
+- Product stock reduced
+- Payment recorded and confirmed
+- Confirmation email sent
+- Shipping order created
 
-**Fallo:**
+**Failure:**
 
-- Pedido en estado "cancelado" o "pago_fallido"
-- Stock no modificado
-- No se realizó cargo al cliente
-- Error registrado en logs
+- Order in "canceled" or "failed_payment" status
+- Stock not modified
+- No charge made to the customer
+- Error recorded in logs
 
-### Reglas de Negocio
+### Business Rules
 
-- **RN-01:** El stock se reserva solo después de confirmar el pago
-- **RN-02:** Los precios mostrados incluyen impuestos
-- **RN-03:** Un cupón solo puede usarse una vez por usuario
-- **RN-04:** Los cupones expiran a las 23:59 de la fecha indicada
-- **RN-05:** El carrito se mantiene por 7 días para usuarios autenticados
-- **RN-06:** El carrito se mantiene por 24 horas para invitados (cookie)
-- **RN-07:** No se permite comprar más de 10 unidades del mismo producto
-- **RN-08:** Los pagos se procesan en la moneda local del cliente
+- **BR-01:** Stock is reserved only after confirming payment
+- **BR-02:** Prices shown include taxes
+- **BR-03:** A coupon can only be used once per user
+- **BR-04:** Coupons expire at 23:59 on the indicated date
+- **BR-05:** The cart is kept for 7 days for authenticated users
+- **BR-06:** The cart is kept for 24 hours for guests (cookie)
+- **BR-07:** Buying more than 10 units of the same product is not allowed
+- **BR-08:** Payments are processed in the customer's local currency
 
-### Requerimientos Relacionados
+### Related Requirements
 
-**Funcionales:**
+**Functional:**
 
-- RF-01: El sistema debe permitir registro de usuarios
-- RF-05: El sistema debe gestionar catálogo de productos
-- RF-12: El sistema debe procesar pagos con Stripe
-- RF-18: El sistema debe enviar emails de confirmación
-- RF-23: El sistema debe gestionar stock de productos
+- FR-01: System must allow user registration
+- FR-05: System must manage product catalog
+- FR-12: System must process payments with Stripe
+- FR-18: System must send confirmation emails
+- FR-23: System must manage product stock
 
-**No Funcionales:**
+**Non-Functional:**
 
-- RNF-01: El proceso de pago debe completarse en < 5 segundos
-- RNF-05: El sistema debe usar HTTPS para todas las transacciones
-- RNF-08: Los datos de tarjeta deben tokenizarse (PCI-DSS)
-- RNF-12: El sistema debe soportar 100 compras concurrentes
+- NFR-01: Payment process must complete in < 5 seconds
+- NFR-05: System must use HTTPS for all transactions
+- NFR-08: Card data must be tokenized (PCI-DSS)
+- NFR-12: System must support 100 concurrent purchases
 
-### Frecuencia de Uso
+### Usage Frequency
 
-- **Estimada:** 500 compras/día
-- **Pico:** 2000 compras/día (Black Friday, Cyber Monday)
+- **Estimated:** 500 purchases/day
+- **Peak:** 2000 purchases/day (Black Friday, Cyber Monday)
 
-### Prioridad
+### Priority
 
-**Alta** - Funcionalidad core del negocio
+**High** - Core business functionality
 
-### Notas Adicionales
+### Additional Notes
 
-- Considerar implementar sistema de "compra en 1 clic" para usuarios frecuentes
-- Evaluar agregar opción de "guardar para después" en el carrito
-- Futuro: Integrar con programa de puntos de lealtad
+- Consider implementing a "1-click purchase" system for frequent users
+- Evaluate adding a "save for later" option in the cart
+- Future: Integrate with loyalty points program
 ```
 
-## Diagramas de Casos de Uso (UML)
+## Use Case Diagrams (UML)
 
-**Representación visual de actores y casos de uso.**
+**Visual representation of actors and use cases.**
 
 ```
 ┌─────────────────────────────────────────────┐
-│         Sistema E-commerce                  │
+│         E-commerce System                   │
 │                                             │
 │  ┌──────────────────┐                      │
-│  │ Buscar Producto  │                      │
+│  │ Search Product   │                      │
 │  └──────────────────┘                      │
 │           │                                 │
 │  ┌──────────────────┐                      │
-│  │ Agregar a Carrito│                      │
+│  │ Add to Cart      │                      │
 │  └──────────────────┘                      │
 │           │                                 │
 │  ┌──────────────────┐    ┌──────────────┐ │
-│  │ Realizar Compra  │───→│ Procesar Pago│ │
+│  │ Purchase Product │───→│ Process Payment│ │
 │  └──────────────────┘    └──────────────┘ │
 │           │                      │         │
 │           │              ┌───────┴────┐    │
 │           │              │   Stripe   │    │
 │           │              └────────────┘    │
 │  ┌──────────────────┐                      │
-│  │ Ver Historial    │                      │
+│  │ View History     │                      │
 │  └──────────────────┘                      │
 │                                             │
 └─────────────────────────────────────────────┘
          │
     ┌────┴────┐
-    │ Cliente │
+    │ Customer│
     └─────────┘
 ```
 
-## Matriz de Trazabilidad
+## Traceability Matrix
 
-**Relacionar casos de uso con requerimientos.**
+**Relate use cases with requirements.**
 
-| Caso de Uso               | RF-01 | RF-05 | RF-12 | RF-18 | RNF-01 | RNF-05 |
-| ------------------------- | ----- | ----- | ----- | ----- | ------ | ------ |
-| CU-001: Realizar Compra   | X     | X     | X     | X     | X      | X      |
-| CU-002: Gestionar Carrito |       | X     |       |       | X      |        |
-| CU-003: Ver Historial     | X     |       |       |       | X      |        |
+| Use Case                 | FR-01 | FR-05 | FR-12 | FR-18 | NFR-01 | NFR-05 |
+| ------------------------ | ----- | ----- | ----- | ----- | ------ | ------ |
+| UC-001: Purchase Product | X     | X     | X     | X     | X      | X      |
+| UC-002: Manage Cart      |       | X     |       |       | X      |        |
+| UC-003: View History     | X     |       |       |       | X      |        |
 
-## Consejos para Escribir Buenos Casos de Uso
+## Tips for Writing Good Use Cases
 
-1. **Usa lenguaje del negocio** - No términos técnicos
-2. **Enfócate en el objetivo** - Qué quiere lograr el usuario, no cómo
-3. **Sé específico en flujos alternativos** - Cubre edge cases
-4. **Documenta excepciones** - Qué pasa cuando falla
-5. **Mantén consistencia** - Usa la misma plantilla para todos
-6. **Revisa con stakeholders** - Valida que refleja la realidad
-7. **Actualiza cuando cambie** - Documento vivo
+1. **Use business language** - Not technical terms
+2. **Focus on the goal** - What the user wants to achieve, not how
+3. **Be specific in alternative flows** - Cover edge cases
+4. **Document exceptions** - What happens when it fails
+5. **Keep consistency** - Use the same template for all
+6. **Review with stakeholders** - Validate that it reflects reality
+7. **Update when it changes** - Living document
 
-## Herramientas Recomendadas
+## Recommended Tools
 
-- **Enterprise Architect** - Modelado UML profesional
-- **Lucidchart** - Diagramas colaborativos
-- **Confluence** - Documentación de casos de uso
-- **Jira** - Vincular casos de uso con historias de usuario
+- **Enterprise Architect** - Professional UML modeling
+- **Lucidchart** - Collaborative diagrams
+- **Confluence** - Use case documentation
+- **Jira** - Link use cases with user stories

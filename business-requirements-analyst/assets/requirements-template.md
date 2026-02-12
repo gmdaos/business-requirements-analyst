@@ -1,914 +1,827 @@
-# Documento de Requerimientos - [Nombre del Proyecto]
+# Requirements Document - [Project Name]
 
-**Versión:** 1.0  
-**Fecha:** [Fecha]  
-**Autor:** [Nombre]  
-**Estado:** [Borrador | En Revisión | Aprobado]
+**Version:** 1.0  
+**Date:** [Date]  
+**Author:** [Name]  
+**Status:** [Draft | Under Review | Approved]
 
 ---
 
-## Tabla de Contenidos
+## Table of Contents
 
-1. [Visión del Negocio](#1-visión-del-negocio)
+1. [Business Vision](#1-business-vision)
 2. [Stakeholders](#2-stakeholders)
-3. [Tipos de Usuarios (Personas)](#3-tipos-de-usuarios-personas)
-4. [Procesos del Negocio](#4-procesos-del-negocio)
-5. [Requerimientos Funcionales](#5-requerimientos-funcionales)
-6. [Requerimientos No Funcionales](#6-requerimientos-no-funcionales)
-7. [Reglas del Negocio](#7-reglas-del-negocio)
-8. [Modelo de Datos](#8-modelo-de-datos)
-9. [Integraciones](#9-integraciones)
-10. [Riesgos y Supuestos](#10-riesgos-y-supuestos)
-11. [Roadmap / Fases](#11-roadmap--fases)
-12. [Anexos](#12-anexos)
+3. [User Types (Personas)](#3-user-types-personas)
+4. [Business Processes](#4-business-processes)
+5. [Functional Requirements](#5-functional-requirements)
+6. [Non-Functional Requirements](#6-non-functional-requirements)
+7. [Business Rules](#7-business-rules)
+8. [Data Model](#8-data-model)
+9. [Integrations](#9-integrations)
+10. [Risks and Assumptions](#10-risks-and-assumptions)
+11. [Roadmap / Phases](#11-roadmap--phases)
+12. [Annexes](#12-annexes)
 
 ---
 
-## 1. Visión del Negocio
+## 1. Business Vision
 
-### 1.1 Problema que Resuelve
+### 1.1 Problem Solved
 
-**Descripción del problema:**
-[Describe el dolor o necesidad que atiende el proyecto]
+**Problem description:**
+[Describe the pain or need the project addresses]
 
-**Situación actual:**
-[Cómo se resuelve actualmente este problema, si aplica]
+**Current situation:**
+[How this problem is currently solved, if applicable]
 
-**Impacto del problema:**
-[Consecuencias de no resolver este problema]
+**Impact of the problem:**
+[Consequences of not solving this problem]
 
-### 1.2 Propuesta de Valor
+### 1.2 Value Proposition
 
-**¿Qué hace único a este producto/servicio?**
-[Describe la propuesta de valor diferencial]
+**What makes this product/service unique?**
+[Describe the differential value proposition]
 
-**Ventajas competitivas:**
+**Competitive advantages:**
 
-- [Ventaja 1]
-- [Ventaja 2]
-- [Ventaja 3]
+- [Advantage 1]
+- [Advantage 2]
+- [Advantage 3]
 
-**Comparación con alternativas:**
-| Característica | Nuestra Solución | Competidor A | Competidor B |
-|----------------|------------------|--------------|--------------|
-| [Característica 1] | [Valor] | [Valor] | [Valor] |
-| [Característica 2] | [Valor] | [Valor] | [Valor] |
+**Comparison with alternatives:**
+| Feature | Our Solution | Competitor A | Competitor B |
+|---------|--------------|--------------|--------------|
+| [Feature 1] | [Value] | [Value] | [Value] |
+| [Feature 2] | [Value] | [Value] | [Value] |
 
-### 1.3 Objetivos del Negocio
+### 1.3 Business Objectives
 
-**Objetivo General:**
-[Objetivo principal del proyecto]
+**General Objective:**
+[Main project goal]
 
-**Objetivos Específicos:**
+**Specific Objectives:**
 
-1. [Objetivo específico 1]
-2. [Objetivo específico 2]
-3. [Objetivo específico 3]
+1. [Specific objective 1]
+2. [Specific objective 2]
+3. [Specific objective 3]
 
-### 1.4 KPIs Principales
+### 1.4 Main KPIs
 
-| KPI     | Métrica        | Meta             | Plazo    |
-| ------- | -------------- | ---------------- | -------- |
-| [KPI 1] | [Cómo se mide] | [Valor objetivo] | [Cuándo] |
-| [KPI 2] | [Cómo se mide] | [Valor objetivo] | [Cuándo] |
-| [KPI 3] | [Cómo se mide] | [Valor objetivo] | [Cuándo] |
+| KPI     | Metric              | Target         | Deadline |
+| ------- | ------------------- | -------------- | -------- |
+| [KPI 1] | [How it's measured] | [Target value] | [When]   |
+| [KPI 2] | [How it's measured] | [Target value] | [When]   |
+| [KPI 3] | [How it's measured] | [Target value] | [When]   |
 
-**Ejemplo:**
-| KPI | Métrica | Meta | Plazo |
-|-----|---------|------|-------|
-| Usuarios activos | Usuarios que inician sesión al menos 1 vez por semana | 10,000 | 6 meses |
-| Tasa de conversión | % de visitantes que completan una compra | 3% | 3 meses |
-| NPS | Net Promoter Score | > 50 | 12 meses |
+**Example:**
+| KPI | Metric | Target | Deadline |
+|-----|--------|--------|----------|
+| Active users | Users who log in at least once a week | 10,000 | 6 months |
+| Conversion rate | % of visitors who complete a purchase | 3% | 3 months |
+| NPS | Net Promoter Score | > 50 | 12 months |
 
-### 1.5 Alcance
+### 1.5 Scope
 
-**Incluye (In Scope):**
+**In Scope:**
 
-- ✅ [Elemento 1]
-- ✅ [Elemento 2]
-- ✅ [Elemento 3]
+- ✅ [Element 1]
+- ✅ [Element 2]
+- ✅ [Element 3]
 
-**No Incluye (Out of Scope):**
+**Out of Scope:**
 
-- ❌ [Elemento 1]
-- ❌ [Elemento 2]
-- ❌ [Elemento 3]
+- ❌ [Element 1]
+- ❌ [Element 2]
+- ❌ [Element 3]
 
-**Futuras Consideraciones:**
+**Future Considerations:**
 
-- 🔮 [Elemento que podría agregarse en el futuro]
-- 🔮 [Elemento que podría agregarse en el futuro]
+- 🔮 [Element that could be added in the future]
+- 🔮 [Element that could be added in the future]
 
 ---
 
 ## 2. Stakeholders
 
-| Tipo          | Nombre/Rol | Responsabilidad   | Interés | Influencia | Contacto |
-| ------------- | ---------- | ----------------- | ------- | ---------- | -------- |
-| Sponsor       | [Nombre]   | [Responsabilidad] | Alto    | Alta       | [Email]  |
-| Product Owner | [Nombre]   | [Responsabilidad] | Alto    | Alta       | [Email]  |
-| Usuario Final | [Tipo]     | [Responsabilidad] | Alto    | Media      | -        |
-| Proveedor     | [Nombre]   | [Responsabilidad] | Medio   | Baja       | [Email]  |
+| Type          | Name/Role | Responsibility   | Interest | Influence | Contact |
+| ------------- | --------- | ---------------- | -------- | --------- | ------- |
+| Sponsor       | [Name]    | [Responsibility] | High     | High      | [Email] |
+| Product Owner | [Name]    | [Responsibility] | High     | High      | [Email] |
+| End User      | [Type]    | [Responsibility] | High     | Medium    | -       |
+| Supplier      | [Name]    | [Responsibility] | Medium   | Low       | [Email] |
 
-**Matriz de Poder/Interés:**
+**Power/Interest Matrix:**
 
 ```
-        Alta Influencia
+        High Influence
               │
-    Gestionar │ Mantener
-    de cerca  │ satisfecho
+     Manage   │ Keep
+     Closely  │ Satisfied
 ──────────────┼──────────────
-    Mantener  │ Monitorear
-    informado │ (mínimo esfuerzo)
+     Keep     │ Monitor
+     Informed │ (minimum effort)
               │
-        Baja Influencia
+         Low Influence
 ```
 
 ---
 
-## 3. Tipos de Usuarios (Personas)
+## 3. User Types (Personas)
 
-### 3.1 [Tipo de Usuario 1]
+### 3.1 [User Type 1]
 
-**Demografía:**
+**Demographics:**
 
-- **Edad:** [Rango]
-- **Ocupación:** [Descripción]
-- **Nivel técnico:** [Bajo | Medio | Alto]
+- **Age:** [Range]
+- **Occupation:** [Description]
+- **Technical Level:** [Low | Medium | High]
 
-**Necesidades:**
+**Needs:**
 
-- [Necesidad 1]
-- [Necesidad 2]
-- [Necesidad 3]
+- [Need 1]
+- [Need 2]
+- [Need 3]
 
-**Dolores (Pain Points):**
+**Pain Points:**
 
-- [Dolor 1]
-- [Dolor 2]
-- [Dolor 3]
+- [Pain 1]
+- [Pain 2]
+- [Pain 3]
 
-**Expectativas del Sistema:**
+**System Expectations:**
 
-- [Expectativa 1]
-- [Expectativa 2]
-- [Expectativa 3]
+- [Expectation 1]
+- [Expectation 2]
+- [Expectation 3]
 
-**Escenario de Uso:**
-[Describe un día típico de este usuario interactuando con el sistema]
+**Usage Scenario:**
+[Describe a typical day for this user interacting with the system]
 
-### 3.2 [Tipo de Usuario 2]
+### 3.2 [User Type 2]
 
-[Repetir estructura anterior]
+[Repeat previous structure]
 
 ---
 
-## 4. Procesos del Negocio
+## 4. Business Processes
 
-### 4.1 [Nombre del Proceso 1]
+### 4.1 [Process Name 1]
 
-**Objetivo:** [Qué se busca lograr con este proceso]
+**Objective:** [What is intended to be achieved with this process]
 
-**Actores involucrados:**
+**Involved Actors:**
 
 - [Actor 1]
 - [Actor 2]
 - [Actor 3]
 
-**Flujo del Proceso:**
+**Process Flow:**
 
 ```
-1. [Paso 1]
-2. [Paso 2]
-3. [Paso 3]
-   ├─ Si [condición]: [Acción A]
-   └─ Si no: [Acción B]
-4. [Paso 4]
-5. [Paso 5]
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+   ├─ If [condition]: [Action A]
+   └─ Else: [Action B]
+4. [Step 4]
+5. [Step 5]
 ```
 
-**Diagrama de Flujo:**
-[Insertar diagrama o descripción visual]
+**Flowchart:**
+[Insert diagram or visual description]
 
-**Puntos de Dolor Actuales:**
+**Current Pain Points:**
 
-- ⚠️ [Problema 1]
-- ⚠️ [Problema 2]
+- ⚠️ [Problem 1]
+- ⚠️ [Problem 2]
 
-**Mejoras Propuestas:**
+**Proposed Improvements:**
 
-- ✅ [Mejora 1]
-- ✅ [Mejora 2]
+- ✅ [Improvement 1]
+- ✅ [Improvement 2]
 
-**Métricas:**
+**Metrics:**
 
-- **Tiempo promedio:** [X minutos/horas]
-- **Tasa de éxito:** [X%]
-- **Tasa de error:** [X%]
+- **Average Time:** [X minutes/hours]
+- **Success Rate:** [X%]
+- **Error Rate:** [X%]
 
-### 4.2 [Nombre del Proceso 2]
+### 4.2 [Process Name 2]
 
-[Repetir estructura anterior]
-
----
-
-## 5. Requerimientos Funcionales
-
-### 5.1 Módulo: [Nombre del Módulo]
-
-#### RF-001: [Nombre del Requerimiento]
-
-**Descripción:**
-[Descripción detallada de la funcionalidad]
-
-**Prioridad:** [Alta | Media | Baja]
-
-**Criterios de Aceptación:**
-
-- [ ] [Criterio 1]
-- [ ] [Criterio 2]
-- [ ] [Criterio 3]
-
-**Dependencias:**
-
-- [RF-XXX]: [Descripción de la dependencia]
-
-**Notas:**
-[Información adicional relevante]
+[Repeat previous structure]
 
 ---
 
-**Ejemplo Completo:**
+## 5. Functional Requirements
 
-### 5.1 Módulo: Autenticación y Autorización
+### 5.1 Module: [Module Name]
 
-#### RF-001: Registro de Usuario
+#### FR-001: [Requirement Name]
 
-**Descripción:**
-El sistema debe permitir a nuevos usuarios crear una cuenta proporcionando email, contraseña y nombre completo.
+**Description:**
+[Detailed description of the functionality]
 
-**Prioridad:** Alta
+**Priority:** [High | Medium | Low]
 
-**Criterios de Aceptación:**
+**Acceptance Criteria:**
 
-- [ ] El formulario solicita: email, contraseña, confirmar contraseña, nombre
-- [ ] El email debe tener formato válido
-- [ ] La contraseña debe tener mínimo 8 caracteres
-- [ ] El sistema valida que el email no esté ya registrado
-- [ ] El sistema envía email de verificación
-- [ ] El usuario puede reenviar el email de verificación si no lo recibe
+- [ ] [Criterion 1]
+- [ ] [Criterion 2]
+- [ ] [Criterion 3]
 
-**Dependencias:**
+**Dependencies:**
 
-- [RNF-003]: Integración con servicio de email
+- [FR-XXX]: [Description of the dependency]
 
-**Notas:**
-Considerar agregar verificación con CAPTCHA para prevenir bots.
+**Notes:**
+[Additional relevant information]
 
 ---
 
-#### RF-002: Inicio de Sesión
+**Complete Example:**
 
-**Descripción:**
-El sistema debe permitir a usuarios registrados autenticarse con email y contraseña.
+### 5.1 Module: Authentication and Authorization
 
-**Prioridad:** Alta
+#### FR-001: User Registration
 
-**Criterios de Aceptación:**
+**Description:**
+The system must allow new users to create an account by providing an email, password, and full name.
 
-- [ ] El formulario solicita email y contraseña
-- [ ] El sistema valida credenciales contra la base de datos
-- [ ] Si las credenciales son correctas, se crea una sesión
-- [ ] Si las credenciales son incorrectas, se muestra mensaje de error genérico
-- [ ] Después de 5 intentos fallidos, se bloquea temporalmente la cuenta (15 minutos)
-- [ ] El sistema registra todos los intentos de inicio de sesión
+**Priority:** High
 
-**Dependencias:**
+**Acceptance Criteria:**
 
-- [RF-001]: Registro de Usuario
-- [RNF-005]: Seguridad de contraseñas
+- [ ] Form requests: email, password, confirm password, name
+- [ ] Email must have a valid format
+- [ ] Password must be at least 8 characters long
+- [ ] System validates that the email is not already registered
+- [ ] System sends a verification email
+- [ ] User can resend the verification email if not received
 
-**Notas:**
-Implementar rate limiting para prevenir ataques de fuerza bruta.
+**Dependencies:**
 
----
+- [NFR-003]: Integration with email service
 
-### 5.2 Módulo: [Otro Módulo]
-
-[Continuar con más requerimientos funcionales]
+**Notes:**
+Consider adding CAPTCHA verification to prevent bots.
 
 ---
 
-## 6. Requerimientos No Funcionales
+#### FR-002: User Login
 
-### 6.1 Rendimiento
+**Description:**
+The system must allow registered users to authenticate with an email and password.
 
-#### RNF-001: Tiempo de Respuesta
+**Priority:** High
 
-**Descripción:**
-El sistema debe responder a las peticiones del usuario en tiempos aceptables.
+**Acceptance Criteria:**
 
-**Criterios:**
+- [ ] Form requests email and password
+- [ ] System validates credentials against the database
+- [ ] If credentials are correct, a session is created
+- [ ] If credentials are incorrect, a generic error message is shown
+- [ ] After 5 failed attempts, the account is temporarily locked (15 minutes)
+- [ ] System logs all login attempts
 
-- El 95% de las peticiones deben responder en < 2 segundos
-- El 99% de las peticiones deben responder en < 5 segundos
-- Las búsquedas deben retornar resultados en < 1 segundo
+**Dependencies:**
 
-**Medición:**
-[Cómo se medirá este requerimiento]
+- [FR-001]: User Registration
+- [NFR-005]: Password Security
 
----
-
-#### RNF-002: Capacidad
-
-**Descripción:**
-El sistema debe soportar la carga esperada de usuarios concurrentes.
-
-**Criterios:**
-
-- Soportar 1,000 usuarios concurrentes en operación normal
-- Soportar 5,000 usuarios concurrentes en picos (Black Friday, etc.)
-- Procesar 100 transacciones por segundo
-
-**Medición:**
-Pruebas de carga con herramientas como JMeter o Locust.
+**Notes:**
+Implement rate limiting to prevent brute force attacks.
 
 ---
 
-### 6.2 Seguridad
+### 5.2 Module: [Another Module]
 
-#### RNF-003: Autenticación y Autorización
-
-**Descripción:**
-El sistema debe implementar mecanismos robustos de seguridad.
-
-**Criterios:**
-
-- Todas las contraseñas deben hashearse con bcrypt (cost factor >= 12)
-- Las sesiones deben expirar después de 24 horas de inactividad
-- Implementar HTTPS/TLS 1.3 para todas las comunicaciones
-- Implementar CORS restrictivo
-- Validar y sanitizar todas las entradas de usuario
+[Continue with more functional requirements]
 
 ---
 
-#### RNF-004: Protección de Datos
+## 6. Non-Functional Requirements
 
-**Descripción:**
-El sistema debe cumplir con regulaciones de protección de datos.
+### 6.1 Performance
 
-**Criterios:**
+#### NFR-001: Response Time
 
-- Cumplir con GDPR para usuarios europeos
-- Implementar derecho al olvido (eliminar datos de usuario)
-- Encriptar datos sensibles en reposo (AES-256)
-- Registrar auditoría de acceso a datos sensibles
+**Description:**
+The system must respond to user requests within acceptable times.
 
----
+**Criteria:**
 
-### 6.3 Disponibilidad
+- 95% of requests must respond in < 2 seconds
+- 99% of requests must respond in < 5 seconds
+- Searches must return results in < 1 second
 
-#### RNF-005: Uptime
-
-**Descripción:**
-El sistema debe estar disponible la mayor parte del tiempo.
-
-**Criterios:**
-
-- 99.9% de uptime (máximo 8.76 horas de downtime al año)
-- Ventana de mantenimiento: Domingos 2:00 AM - 4:00 AM
-- Implementar health checks y monitoreo
+**Measurement:**
+[How this requirement will be measured]
 
 ---
 
-### 6.4 Escalabilidad
+#### NFR-002: Capacity
 
-#### RNF-006: Crecimiento
+**Description:**
+The system must support the expected load of concurrent users.
 
-**Descripción:**
-El sistema debe poder escalar para soportar crecimiento futuro.
+**Criteria:**
 
-**Criterios:**
+- Support 1,000 concurrent users in normal operation
+- Support 5,000 concurrent users in peaks (Black Friday, etc.)
+- Process 100 transactions per second
 
-- Arquitectura horizontal escalable (agregar más servidores)
-- Base de datos debe soportar hasta 10 millones de registros sin degradación
-- Implementar caché (Redis) para reducir carga en BD
-
----
-
-### 6.5 Usabilidad
-
-#### RNF-007: Experiencia de Usuario
-
-**Descripción:**
-El sistema debe ser fácil de usar e intuitivo.
-
-**Criterios:**
-
-- Diseño responsive (mobile, tablet, desktop)
-- Cumplir con WCAG 2.1 nivel AA (accesibilidad)
-- Soportar navegadores: Chrome, Firefox, Safari, Edge (últimas 2 versiones)
-- Mensajes de error claros y accionables
+**Measurement:**
+Load tests with tools like JMeter or Locust.
 
 ---
 
-### 6.6 Mantenibilidad
+### 6.2 Security
 
-#### RNF-008: Código y Documentación
+#### NFR-003: Authentication and Authorization
 
-**Descripción:**
-El código debe ser mantenible y estar bien documentado.
+**Description:**
+The system must implement robust security mechanisms.
 
-**Criterios:**
+**Criteria:**
 
-- Cobertura de tests >= 80%
-- Documentación de API (OpenAPI/Swagger)
-- Código debe seguir guías de estilo (ESLint, Prettier)
-- Comentarios en código para lógica compleja
-
----
-
-## 7. Reglas del Negocio
-
-### RN-001: [Nombre de la Regla]
-
-**Descripción:**
-[Descripción detallada de la regla]
-
-**Ejemplo:**
-[Ejemplo concreto de aplicación]
-
-**Excepciones:**
-[Si existen excepciones a esta regla]
+- All passwords must be hashed with bcrypt (cost factor >= 12)
+- Sessions must expire after 24 hours of inactivity
+- Implement HTTPS/TLS 1.3 for all communications
+- Implement restrictive CORS
+- Validate and sanitize all user inputs
 
 ---
 
-**Ejemplos Completos:**
+#### NFR-004: Data Protection
 
-### RN-001: Cancelación de Pedidos
+**Description:**
+The system must comply with data protection regulations.
 
-**Descripción:**
-Un pedido solo puede cancelarse si está en estado "pendiente" o "pagado" y no han transcurrido más de 30 minutos desde su creación.
+**Criteria:**
 
-**Ejemplo:**
-
-- Pedido creado a las 10:00 AM, estado "pagado"
-- Usuario intenta cancelar a las 10:25 AM → ✅ Permitido
-- Usuario intenta cancelar a las 10:35 AM → ❌ No permitido
-
-**Excepciones:**
-Los administradores pueden cancelar pedidos en cualquier momento, pero deben justificar la razón.
+- Comply with GDPR for European users
+- Implement right to be forgotten (delete user data)
+- Encrypt sensitive data at rest (AES-256)
+- Maintain audit logs for access to sensitive data
 
 ---
 
-### RN-002: Límite de Compra por Producto
+### 6.3 Availability
 
-**Descripción:**
-Un usuario no puede comprar más de 10 unidades del mismo producto en un solo pedido.
+#### NFR-005: Uptime
 
-**Ejemplo:**
+**Description:**
+The system must be available most of the time.
 
-- Usuario intenta agregar 15 unidades de "Laptop XYZ" → ❌ Sistema limita a 10
+**Criteria:**
 
-**Excepciones:**
-Clientes corporativos (con cuenta verificada) pueden solicitar compras mayores contactando a ventas.
-
----
-
-### RN-003: Aplicación de Impuestos
-
-**Descripción:**
-Los impuestos se calculan según la ubicación del cliente:
-
-- México: IVA 16%
-- España: IVA 21%
-- USA: Varía por estado (tabla de referencia)
-
-**Ejemplo:**
-
-- Producto: $100
-- Cliente en México: Total = $116 (incluye IVA)
-- Cliente en España: Total = $121 (incluye IVA)
+- 99.9% uptime (maximum 8.76 hours of downtime per year)
+- Maintenance window: Sundays 2:00 AM - 4:00 AM
+- Implement health checks and monitoring
 
 ---
 
-## 8. Modelo de Datos
+### 6.4 Scalability
 
-### 8.1 Entidades Principales
+#### NFR-006: Growth
 
-#### Entidad: Usuario
+**Description:**
+The system must be able to scale to support future growth.
 
-**Descripción:**
-Representa a un usuario del sistema.
+**Criteria:**
 
-**Atributos:**
-| Atributo | Tipo | Restricciones | Descripción |
-|----------|------|---------------|-------------|
-| id | Integer | PK, Auto-increment | Identificador único |
-| email | String(255) | Único, No nulo | Email del usuario |
-| password_hash | String(255) | No nulo | Contraseña hasheada |
-| nombre | String(100) | No nulo | Nombre completo |
-| rol | Enum | 'cliente', 'admin' | Rol del usuario |
-| email_verificado | Boolean | Default: false | Si verificó su email |
-| creado_en | DateTime | Default: NOW() | Fecha de registro |
-| actualizado_en | DateTime | Default: NOW() | Última actualización |
-
-**Índices:**
-
-- `idx_email` en campo `email`
+- Scalable horizontal architecture (add more servers)
+- Database must support up to 10 million records without degradation
+- Implement cache (Redis) to reduce DB load
 
 ---
 
-#### Entidad: Producto
+### 6.5 Usability
 
-**Descripción:**
-Representa un producto del catálogo.
+#### NFR-007: User Experience
 
-**Atributos:**
-| Atributo | Tipo | Restricciones | Descripción |
-|----------|------|---------------|-------------|
-| id | Integer | PK, Auto-increment | Identificador único |
-| nombre | String(255) | No nulo | Nombre del producto |
-| descripcion | Text | Nullable | Descripción detallada |
-| precio | Decimal(10,2) | No nulo, >= 0 | Precio unitario |
-| stock | Integer | Default: 0, >= 0 | Cantidad disponible |
-| categoria_id | Integer | FK → Categoria.id | Categoría del producto |
-| activo | Boolean | Default: true | Si está disponible |
-| creado_en | DateTime | Default: NOW() | Fecha de creación |
+**Description:**
+The system must be easy to use and intuitive.
 
-**Índices:**
+**Criteria:**
 
-- `idx_categoria` en campo `categoria_id`
-- `idx_activo` en campo `activo`
+- Responsive design (mobile, tablet, desktop)
+- Comply with WCAG 2.1 level AA (accessibility)
+- Support browsers: Chrome, Firefox, Safari, Edge (last 2 versions)
+- Clear and actionable error messages
 
 ---
 
-### 8.2 Relaciones
+### 6.6 Maintainability
+
+#### NFR-008: Code and Documentation
+
+**Description:**
+Code must be maintainable and well-documented.
+
+**Criteria:**
+
+- Test coverage >= 80%
+- API documentation (OpenAPI/Swagger)
+- Code must follow style guides (ESLint, Prettier)
+- Code comments for complex logic
+
+---
+
+## 7. Business Rules
+
+### BR-001: [Rule Name]
+
+**Description:**
+[Detailed description of the rule]
+
+**Example:**
+[Specific application example]
+
+**Exceptions:**
+[If there are exceptions to this rule]
+
+---
+
+**Complete Examples:**
+
+### BR-001: Order Cancellation
+
+**Description:**
+An order can only be canceled if it is in "pending" or "paid" status and no more than 30 minutes have passed since its creation.
+
+**Example:**
+
+- Order created at 10:00 AM, "paid" status
+- User attempts to cancel at 10:25 AM → ✅ Allowed
+- User attempts to cancel at 10:35 AM → ❌ Not allowed
+
+**Exceptions:**
+Administrators can cancel orders at any time but must justify the reason.
+
+---
+
+### BR-002: Purchase Limit per Product
+
+**Description:**
+A user cannot buy more than 10 units of the same product in a single order.
+
+**Example:**
+
+- User attempts to add 15 units of "Laptop XYZ" → ❌ System limits to 10
+
+**Exceptions:**
+Corporate customers (with a verified account) can request larger purchases by contacting sales.
+
+---
+
+### BR-003: Tax Application
+
+**Description:**
+Taxes are calculated according to the customer's location:
+
+- Mexico: VAT 16%
+- Spain: VAT 21%
+- USA: Varies by state (reference table)
+
+**Example:**
+
+- Product: $100
+- Customer in Mexico: Total = $116 (includes VAT)
+- Customer in Spain: Total = $121 (includes VAT)
+
+---
+
+## 8. Data Model
+
+### 8.1 Primary Entities
+
+#### Entity: User
+
+**Description:**
+Represents a user of the system.
+
+**Attributes:**
+| Attribute | Type | Constraints | Description |
+|-----------|------|-------------|-------------|
+| id | Integer | PK, Auto-increment | Unique identifier |
+| email | String(255) | Unique, Not NULL | User's email |
+| password_hash | String(255) | Not NULL | Hashed password |
+| name | String(100) | Not NULL | Full name |
+| role | Enum | 'customer', 'admin' | User's role |
+| email_verified | Boolean | Default: false | If email was verified |
+| created_at | DateTime | Default: NOW() | Registration date |
+| updated_at | DateTime | Default: NOW() | Last update |
+
+**Indexes:**
+
+- `idx_email` on field `email`
+
+---
+
+#### Entity: Product
+
+**Description:**
+Represents a product in the catalog.
+
+**Attributes:**
+| Attribute | Type | Constraints | Description |
+|-----------|------|-------------|-------------|
+| id | Integer | PK, Auto-increment | Unique identifier |
+| name | String(255) | Not NULL | Product name |
+| description | Text | Nullable | Detailed description |
+| price | Decimal(10,2) | Not NULL, >= 0 | Unit price |
+| stock | Integer | Default: 0, >= 0 | Available quantity |
+| category_id | Integer | FK → Category.id | Product category |
+| active | Boolean | Default: true | If available |
+| created_at | DateTime | Default: NOW() | Creation date |
+
+**Indexes:**
+
+- `idx_category` on field `category_id`
+- `idx_active` on field `active`
+
+---
+
+### 8.2 Relationships
 
 ```
-Usuario ──1:N── Pedido
-Pedido ──N:M── Producto (a través de PedidoProducto)
-Producto ──N:1── Categoria
-Pedido ──1:1── Pago
-Usuario ──1:N── Direccion
+User ──1:N── Order
+Order ──N:M── Product (through OrderProduct)
+Product ──N:1── Category
+Order ──1:1── Payment
+User ──1:N── Address
 ```
 
-**Diagrama ER:**
-[Insertar diagrama de entidad-relación]
+**ER Diagram:**
+[Insert entity-relationship diagram]
 
 ---
 
-### 8.3 Diccionario de Datos Completo
+### 8.3 Complete Data Dictionary
 
-[Para proyectos grandes, incluir tabla completa de todas las entidades y atributos]
+[For large projects, include a complete table of all entities and attributes]
 
 ---
 
-## 9. Integraciones
+## 9. Integrations
 
-### 9.1 [Nombre de la Integración 1]
+### 9.1 [Integration Name 1]
 
-**Proveedor:** [Nombre del servicio externo]
+**Provider:** [External service name]
 
-**Propósito:**
-[Para qué se usa esta integración]
+**Purpose:**
+[What this integration is used for]
 
-**Tipo de Integración:**
+**Integration Type:**
 
-- [ ] API REST
-- [ ] API GraphQL
+- [ ] REST API
+- [ ] GraphQL API
 - [ ] Webhook
 - [ ] SDK
-- [ ] Otro: [Especificar]
+- [ ] Other: [Specify]
 
-**Autenticación:**
-[Tipo de autenticación: API Key, OAuth, JWT, etc.]
+**Authentication:**
+[Type of authentication: API Key, OAuth, JWT, etc.]
 
-**Endpoints Utilizados:**
-| Endpoint | Método | Propósito |
-|----------|--------|-----------|
-| [URL] | GET/POST/etc. | [Descripción] |
+**Endpoints Used:**
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| [URL] | GET/POST/etc. | [Description] |
 
-**Datos Intercambiados:**
+**Data Exchanged:**
 
-- **Enviamos:** [Qué datos enviamos]
-- **Recibimos:** [Qué datos recibimos]
+- **We send:** [What data we send]
+- **We receive:** [What data we receive]
 
-**Frecuencia:**
-[Con qué frecuencia se usa: por transacción, cada hora, etc.]
+**Frequency:**
+[How often it's used: per transaction, hourly, etc.]
 
-**SLA del Proveedor:**
-[Disponibilidad garantizada, tiempo de respuesta]
+**Provider SLA:**
+[Guaranteed availability, response time]
 
-**Plan de Contingencia:**
-[Qué hacer si el servicio falla]
+**Contingency Plan:**
+[What to do if the service fails]
 
-**Costos:**
-[Modelo de pricing del servicio]
+**Costs:**
+[Pricing model of the service]
 
 ---
 
-**Ejemplo Completo:**
+**Complete Example:**
 
-### 9.1 Stripe (Procesamiento de Pagos)
+### 9.1 Stripe (Payment Processing)
 
-**Proveedor:** Stripe Inc.
+**Provider:** Stripe Inc.
 
-**Propósito:**
-Procesar pagos con tarjeta de crédito/débito de forma segura y cumpliendo con PCI-DSS.
+**Purpose:**
+Process credit/debit card payments securely and PCI-DSS compliant.
 
-**Tipo de Integración:**
+**Integration Type:**
 
-- [x] API REST
+- [x] REST API
 - [x] SDK (JavaScript)
 
-**Autenticación:**
-API Key (Secret Key para backend, Publishable Key para frontend)
+**Authentication:**
+API Key (Secret Key for backend, Publishable Key for frontend)
 
-**Endpoints Utilizados:**
-| Endpoint | Método | Propósito |
+**Endpoints Used:**
+| Endpoint | Method | Purpose |
 |----------|--------|-----------|
-| `/v1/payment_intents` | POST | Crear intención de pago |
-| `/v1/payment_intents/:id` | GET | Consultar estado de pago |
-| `/v1/refunds` | POST | Procesar reembolso |
+| `/v1/payment_intents` | POST | Create payment intent |
+| `/v1/payment_intents/:id` | GET | Check payment status |
+| `/v1/refunds` | POST | Process refund |
 
-**Datos Intercambiados:**
+**Data Exchanged:**
 
-- **Enviamos:**
-  - Monto (en centavos)
-  - Moneda (USD, MXN, EUR, etc.)
-  - Token de tarjeta (generado por Stripe.js)
-  - Metadata (ID de pedido, ID de usuario)
-- **Recibimos:**
-  - ID de transacción
-  - Estado (succeeded, failed, pending)
-  - Detalles de error (si aplica)
+- **We send:**
+  - Amount (in cents)
+  - Currency (USD, MXN, EUR, etc.)
+  - Card token (generated by Stripe.js)
+  - Metadata (Order ID, User ID)
+- **We receive:**
+  - Transaction ID
+  - Status (succeeded, failed, pending)
+  - Error details (if applicable)
 
-**Frecuencia:**
-Por cada transacción de compra (estimado: 500/día)
+**Frequency:**
+Per each purchase transaction (estimate: 500/day)
 
-**SLA del Proveedor:**
+**Provider SLA:**
 
 - 99.99% uptime
-- Tiempo de respuesta: < 500ms (p95)
+- Response time: < 500ms (p95)
 
-**Plan de Contingencia:**
+**Contingency Plan:**
 
-- Implementar cola de reintentos (3 intentos con backoff exponencial)
-- Mostrar mensaje al usuario: "Problema temporal, intenta en unos minutos"
-- Alertar a equipo de operaciones si falla > 5 minutos
+- Implement retry queue (3 attempts with exponential backoff)
+- Show message to user: "Temporary issue, please try again in a few minutes"
+- Alert operations team if failures > 5 minutes
 
-**Costos:**
+**Costs:**
 
-- 2.9% + $0.30 USD por transacción exitosa
-- Sin costo mensual fijo
-- Estimado mensual: $1,500 USD (basado en 500 transacciones/día, ticket promedio $50)
-
----
-
-### 9.2 [Otra Integración]
-
-[Repetir estructura anterior]
+- 2.9% + $0.30 USD per successful transaction
+- No fixed monthly cost
+- Monthly estimate: $1,500 USD (based on 500 transactions/day, average ticket $50)
 
 ---
 
-## 10. Riesgos y Supuestos
+### 9.2 [Another Integration]
 
-### 10.1 Riesgos
-
-#### R-001: [Nombre del Riesgo]
-
-**Categoría:** [Técnico | Legal | Operacional | Financiero]
-
-**Descripción:**
-[Descripción detallada del riesgo]
-
-**Probabilidad:** [Alta | Media | Baja]
-
-**Impacto:** [Alto | Medio | Bajo]
-
-**Nivel de Riesgo:** [Probabilidad × Impacto]
-
-**Mitigación:**
-[Acciones para reducir probabilidad o impacto]
-
-**Plan de Contingencia:**
-[Qué hacer si el riesgo se materializa]
-
-**Responsable:**
-[Quién monitorea este riesgo]
+[Repeat previous structure]
 
 ---
 
-**Ejemplos:**
+## 10. Risks and Assumptions
 
-#### R-001: Dependencia de API Externa (Stripe)
+### 10.1 Risks
 
-**Categoría:** Técnico
+#### R-001: [Risk Name]
 
-**Descripción:**
-Si Stripe tiene downtime prolongado, no podemos procesar pagos, lo que detiene las ventas completamente.
+**Category:** [Technical | Legal | Operational | Financial]
 
-**Probabilidad:** Baja (Stripe tiene 99.99% uptime)
+**Description:**
+[Detailed description of the risk]
 
-**Impacto:** Alto (pérdida directa de ingresos)
+**Probability:** [High | Medium | Low]
 
-**Nivel de Riesgo:** Medio
+**Impact:** [High | Medium | Low]
 
-**Mitigación:**
+**Risk Level:** [Probability × Impact]
 
-- Implementar sistema de caché para reintentos
-- Monitoreo activo del status de Stripe
-- Considerar integración con pasarela alternativa (PayPal) como backup
+**Mitigation:**
+[Actions to reduce probability or impact]
 
-**Plan de Contingencia:**
+**Contingency Plan:**
+[What to do if the risk materializes]
 
-1. Detectar falla de Stripe
-2. Activar modo "mantenimiento programado" en checkout
-3. Notificar a clientes vía email/redes sociales
-4. Si downtime > 2 horas, activar pasarela alternativa
-
-**Responsable:** Tech Lead
+**Responsible:**
+[Who monitors this risk]
 
 ---
 
-#### R-002: Cambios en Regulación de Protección de Datos
+**Examples:**
 
-**Categoría:** Legal
+#### R-001: External API Dependency (Stripe)
 
-**Descripción:**
-Nuevas leyes de privacidad pueden requerir cambios significativos en cómo manejamos datos de usuarios.
+**Category:** Technical
 
-**Probabilidad:** Media
+**Description:**
+If Stripe has prolonged downtime, we cannot process payments, which stops sales completely.
 
-**Impacto:** Alto (multas, rediseño de sistema)
+**Probability:** Low (Stripe has 99.99% uptime)
 
-**Nivel de Riesgo:** Alto
+**Impact:** High (direct revenue loss)
 
-**Mitigación:**
+**Risk Level:** Medium
 
-- Diseñar arquitectura modular para facilitar cambios
-- Implementar desde el inicio: consentimiento explícito, derecho al olvido, portabilidad de datos
-- Consultar con asesor legal especializado en protección de datos
+**Mitigation:**
 
-**Plan de Contingencia:**
+- Implement caching system for retries
+- Active monitoring of Stripe status
+- Consider integration with alternative gateway (PayPal) as backup
 
-1. Monitoreo continuo de cambios legislativos
-2. Presupuesto de contingencia (20% del presupuesto técnico)
-3. Equipo legal en retainer
+**Contingency Plan:**
 
-**Responsable:** Legal + CTO
+1. Detect Stripe failure
+2. Activate "scheduled maintenance" mode in checkout
+3. Notify customers via email/social media
+4. If downtime > 2 hours, activate alternative gateway
 
----
-
-### 10.2 Supuestos
-
-#### S-001: [Nombre del Supuesto]
-
-**Descripción:**
-[Qué estamos asumiendo]
-
-**Impacto si es falso:**
-[Qué pasa si este supuesto no se cumple]
-
-**Validación:**
-[Cómo validaremos este supuesto]
+**Responsible:** Tech Lead
 
 ---
 
-**Ejemplos:**
+#### R-002: Changes in Data Protection Regulation
 
-#### S-001: Acceso a Internet Estable
+**Category:** Legal
 
-**Descripción:**
-Asumimos que los usuarios tienen acceso a internet estable con velocidad >= 1 Mbps.
+**Description:**
+New privacy laws may require significant changes to how we handle user data.
 
-**Impacto si es falso:**
-La aplicación puede ser lenta o inusable para usuarios con conexiones pobres.
+**Probability:** Medium
 
-**Validación:**
+**Impact:** High (fines, system redesign)
 
-- Analítica de velocidad de conexión de usuarios
-- Pruebas de usabilidad en conexiones 3G
+**Risk Level:** High
 
-**Mitigación si es falso:**
+**Mitigation:**
 
-- Implementar modo offline limitado
-- Optimizar assets (imágenes, JS)
-- Implementar lazy loading
+- Design modular architecture to facilitate changes
+- Implement from the start: explicit consent, right to be forgotten, data portability
+- Consult with a legal advisor specialized in data protection
 
----
+**Contingency Plan:**
 
-#### S-002: Volumen Inicial de Usuarios
+1. Continuous monitoring of legislative changes
+2. Contingency budget (20% of technical budget)
+3. Legal team on retainer
 
-**Descripción:**
-Asumimos que en los primeros 6 meses no excederemos 10,000 usuarios activos mensuales.
-
-**Impacto si es falso:**
-Si crecemos más rápido, podemos tener problemas de rendimiento o costos de infraestructura no presupuestados.
-
-**Validación:**
-
-- Monitoreo de crecimiento semanal
-- Alertas cuando alcancemos 70% de capacidad
-
-**Mitigación si es falso:**
-
-- Plan de escalamiento preparado
-- Presupuesto de contingencia para infraestructura
-- Arquitectura diseñada para escalar horizontalmente
+**Responsible:** Legal + CTO
 
 ---
 
-## 11. Roadmap / Fases
+### 10.2 Assumptions
 
-### Fase 1: MVP (Producto Mínimo Viable)
+#### A-001: [Assumption Name]
 
-**Duración:** [X semanas/meses]
+**Description:**
+[What we are assuming]
 
-**Objetivo:**
-[Qué se busca lograr con el MVP]
+**Impact if false:**
+[What happens if this assumption is not met]
 
-**Funcionalidades Incluidas:**
-
-- ✅ [Funcionalidad 1] - [RF-XXX]
-- ✅ [Funcionalidad 2] - [RF-XXX]
-- ✅ [Funcionalidad 3] - [RF-XXX]
-
-**Criterios de Éxito:**
-
-- [Criterio 1]
-- [Criterio 2]
-
-**Entregables:**
-
-- [Entregable 1]
-- [Entregable 2]
+**Validation:**
+[How we will validate this assumption]
 
 ---
 
-### Fase 2: [Nombre de la Fase]
+**Examples:**
 
-**Duración:** [X semanas/meses]
+#### A-001: Stable Internet Access
 
-**Objetivo:**
-[Qué se busca lograr]
+**Description:**
+We assume users have stable internet access with speed >= 1 Mbps.
 
-**Funcionalidades Incluidas:**
+**Impact if false:**
+The application may be slow or unusable for users with poor connections.
 
-- ✅ [Funcionalidad 1]
-- ✅ [Funcionalidad 2]
+**Validation:**
 
-**Dependencias:**
+- Connection speed analytics of users
+- Usability tests on 3G connections
 
-- Completar Fase 1
-- [Otra dependencia]
+**Mitigation if false:**
 
----
-
-### Fase 3: [Nombre de la Fase]
-
-[Repetir estructura]
+- Implement limited offline mode
+- Optimize assets (images, JS)
+- Implement lazy loading
 
 ---
 
-**Diagrama de Gantt:**
-[Insertar diagrama temporal de fases]
+## 11. Roadmap / Phases
+
+### MVP (Phase 1) - 3 months
+
+- Registration and authentication
+- Product catalog
+- Shopping cart
+- Basic payment with Stripe
+
+### Phase 2 - 2 months
+
+- Notification system
+- Order history
+- Basic admin panel
+
+### Phase 3 - 3 months
+
+- Advanced reporting
+- Logistics integration
+- Recommendation system
 
 ---
 
-## 12. Anexos
+## 12. Annexes
 
-### 12.1 Glosario
-
-| Término     | Definición   |
-| ----------- | ------------ |
-| [Término 1] | [Definición] |
-| [Término 2] | [Definición] |
-
-### 12.2 Referencias
-
-- [Documento 1]
-- [Documento 2]
-- [URL de recurso externo]
-
-### 12.3 Historial de Cambios
-
-| Versión | Fecha   | Autor    | Cambios                  |
-| ------- | ------- | -------- | ------------------------ |
-| 1.0     | [Fecha] | [Nombre] | Versión inicial          |
-| 1.1     | [Fecha] | [Nombre] | [Descripción de cambios] |
-
----
-
-## Aprobaciones
-
-| Rol           | Nombre   | Firma | Fecha |
-| ------------- | -------- | ----- | ----- |
-| Product Owner | [Nombre] |       |       |
-| Tech Lead     | [Nombre] |       |       |
-| Stakeholder   | [Nombre] |       |       |
-
----
-
-**Fin del Documento**
+[Include here any additional documentation, system diagrams, external links, etc.]

@@ -1,75 +1,75 @@
 # 📋 Business Requirements Analyst - Claude AI Skill
 
-> Metodología profesional completa para levantamiento de requerimientos de software y negocios
+> Complete professional methodology for software and business requirements gathering.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude AI](https://img.shields.io/badge/Claude-AI%20Skill-blue)](https://claude.ai)
 
 ---
 
-## 🎯 ¿Qué es este Skill?
+## 🎯 What is this Skill?
 
-**Business Requirements Analyst** es un Skill para Claude AI que implementa una metodología profesional de levantamiento de requerimientos, combinando:
+**Business Requirements Analyst** is a Claude AI Skill that implements a professional requirements gathering methodology, combining:
 
-- ✅ **Business Analysis (BABOK)** - Análisis de negocio profesional
-- ✅ **Design Thinking** - Validación de ideas centrada en usuarios
-- ✅ **Documentación Completa** - Plantillas listas para usar
+- ✅ **Business Analysis (BABOK)** - Professional business analysis
+- ✅ **Design Thinking** - User-centered idea validation
+- ✅ **Complete Documentation** - Ready-to-use templates
 
-### ¿Qué produce?
+### What does it produce?
 
-Un **documento maestro de requerimientos** que incluye:
+A **master requirements document** that includes:
 
-1. 📌 Visión del Negocio (problema, propuesta de valor, KPIs)
-2. 👥 Stakeholders y Personas
-3. 🔄 Procesos del Negocio (flujos detallados)
-4. ⚙️ Requerimientos Funcionales (RF-001, RF-002...)
-5. 🚀 Requerimientos No Funcionales (rendimiento, seguridad, escalabilidad)
-6. 📊 Modelo de Datos (entidades, relaciones)
-7. 🔌 Integraciones (APIs, servicios externos)
-8. ⚠️ Riesgos y Supuestos
-9. 🗺️ Roadmap en Fases (MVP, Fase 2, Fase 3...)
+1. 📌 Business Vision (problem, value proposition, KPIs)
+2. 👥 Stakeholders and Personas
+3. 🔄 Business Processes (detailed flows)
+4. ⚙️ Functional Requirements (FR-001, FR-002...)
+5. 🚀 Non-Functional Requirements (performance, security, scalability)
+6. 📊 Data Model (entities, relationships)
+7. 🔌 Integrations (APIs, external services)
+8. ⚠️ Risks and Assumptions
+9. 🗺️ Roadmap in Phases (MVP, Phase 2, Phase 3...)
 
 ---
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### Opción 1: NPX (Recomendado)
-
-```bash
-npx skills add gmdaos/business-requirements-analyst
-```
-
-### Opción 2: Instalación Manual
-
-#### En Claude Code:
+### Option 1: NPX (Recommended)
 
 ```bash
-# Clonar el repositorio
-git clone https://github.com/gmdaos/business-requirements-analyst.git
-
-# Copiar a tu proyecto
-cp -r business-requirements-analyst/business-requirements-analyst .agent/skills/
+npx skills add gmdaos/business-requirements-analyst-skill
 ```
 
-#### En Claude.ai:
+### Option 2: Manual Installation
 
-1. Descarga el archivo [business-requirements-analyst.skill](https://github.com/gmdaos/business-requirements-analyst/releases/latest)
-2. Ve a **Settings** → **Features** → **Skills**
-3. Haz clic en **Upload Custom Skill**
-4. Selecciona el archivo `.skill`
+#### In Claude Code:
 
-#### En Claude API:
+```bash
+# Clone the repository
+git clone https://github.com/gmdaos/business-requirements-analyst-skill.git
+
+# Copy to your project
+cp -r business-requirements-analyst-skill/business-requirements-analyst .agent/skills/
+```
+
+#### In Claude.ai:
+
+1. Download the [business-requirements-analyst.skill](https://github.com/gmdaos/business-requirements-analyst-skill/releases/latest) file
+2. Go to **Settings** → **Features** → **Skills**
+3. Click on **Upload Custom Skill**
+4. Select the `.skill` file
+
+#### In Claude API:
 
 ```python
 import anthropic
 
-client = anthropic.Anthropic(api_key="tu-api-key")
+client = anthropic.Anthropic(api_key="your-api-key")
 
-# Subir el Skill
+# Upload the Skill
 with open("business-requirements-analyst.skill", "rb") as f:
     skill = client.skills.create(file=f)
 
-# Usar en conversación
+# Use in conversation
 message = client.messages.create(
     model="claude-3-5-sonnet-20241022",
     extra_headers={
@@ -83,165 +83,165 @@ message = client.messages.create(
     }],
     messages=[{
         "role": "user",
-        "content": "Ayúdame a documentar mi proyecto"
+        "content": "Help me document my project"
     }]
 )
 ```
 
 ---
 
-## 💡 Uso
+## 💡 Usage
 
-### Activación Automática
+### Automatic Activation
 
-El Skill se activa automáticamente cuando:
+The Skill activates automatically when:
 
-- Mencionas "levantamiento de requerimientos"
-- Pides "documentar un proyecto nuevo"
-- Solicitas "especificaciones técnicas"
-- Necesitas "validar una idea de negocio"
+- You mention "requirements gathering"
+- You ask to "document a new project"
+- You request "technical specifications"
+- You need to "validate a business idea"
 
-### Ejemplo de Conversación
+### Conversation Example
 
 ```
-👤 Usuario:
-"Necesito documentar mi proyecto de app de delivery de comida"
+👤 User:
+"I need to document my food delivery app project"
 
-🤖 Claude (con Skill activo):
-"Perfecto, voy a ayudarte con un levantamiento de requerimientos
-completo usando la metodología Business Analysis.
+🤖 Claude (with active Skill):
+"Great, I'm going to help you with a complete requirements gathering
+using the Business Analysis methodology.
 
-Empecemos por la visión del negocio:
+Let's start with the business vision:
 
-1. ¿Qué problema específico resuelve tu app?
-2. ¿Quiénes son tus usuarios principales?
-3. ¿Qué hace única a tu app vs. competidores?
+1. What specific problem does your app solve?
+2. Who are your primary users?
+3. What makes your app unique vs. competitors?
 ..."
 
-[Claude te guía paso a paso]
+[Claude guides you step-by-step]
 
-🤖 Claude (al final):
-"He generado tu documento completo de requerimientos con:
-- 15 requerimientos funcionales
-- 8 requerimientos no funcionales
-- 3 procesos mapeados
-- Modelo de datos con 8 entidades
-- Roadmap en 3 fases"
+🤖 Claude (at the end):
+"I've generated your complete requirements document with:
+- 15 functional requirements
+- 8 non-functional requirements
+- 3 mapped processes
+- Data model with 8 entities
+- 3-phase roadmap"
 ```
 
 ---
 
-## 📚 Contenido del Skill
+## 📚 Skill Content
 
-### Archivos Principales
+### Main Files
 
-- **SKILL.md** - Metodología principal y guías de uso
-- **references/** - Documentación técnica detallada
-  - `process-mapping.md` - Técnicas de mapeo de procesos (BPMN, flujos)
-  - `data-modeling.md` - Modelado de datos, normalización, patrones
-  - `use-cases.md` - Casos de uso detallados con plantillas
-- **assets/** - Recursos y plantillas
-  - `requirements-template.md` - Plantilla completa lista para usar
+- **SKILL.md** - Core methodology and usage guides
+- **references/** - Detailed technical documentation
+  - `process-mapping.md` - Process mapping techniques (BPMN, flows)
+  - `data-modeling.md` - Data modeling, normalization, patterns
+  - `use-cases.md` - Detailed use cases with templates
+- **assets/** - Resources and templates
+  - `requirements-template.md` - Complete ready-to-use template
 
 ---
 
-## 🎓 Metodologías Incluidas
+## 🎓 Included Methodologies
 
 ### 1. Design Thinking
 
-Para validación de ideas y descubrimiento de necesidades:
+For idea validation and needs discovery:
 
-- Empatizar con usuarios
-- Definir problemas
-- Idear soluciones
-- Prototipar
-- Testear
+- Empathize with users
+- Define key problems
+- Ideate solutions
+- Prototype
+- Test
 
 ### 2. Business Analysis (BABOK)
 
-Para documentación profesional:
+For professional documentation:
 
-- Requerimientos del negocio
-- Requerimientos funcionales y no funcionales
-- Reglas del negocio
-- Stakeholders y procesos
+- Business requirements
+- Functional and non-functional requirements
+- Business rules
+- Stakeholders and processes
 
 ### 3. Lean Startup
 
-Para visión rápida y validación:
+For quick vision and validation:
 
-- Canvas de modelo de negocio
+- Business model canvas
 - MVP definition
-- Métricas clave
+- Key metrics
 
 ---
 
-## 📖 Casos de Uso
+## 📖 Use Cases
 
-### ✅ Ideal para:
+### ✅ Ideal for:
 
-- 🚀 **Startups** - Validar y documentar ideas de negocio
-- 💼 **Consultores** - Crear especificaciones para clientes
-- 👨‍💻 **Desarrolladores** - Entender alcance antes de cotizar
-- 🏢 **Product Managers** - Documentar roadmap de producto
-- 💰 **Inversores** - Evaluar viabilidad de proyectos
+- 🚀 **Startups** - Validate and document business ideas
+- 💼 **Consultants** - Create specifications for clients
+- 👨‍💻 **Developers** - Understand scope before quoting
+- 🏢 **Product Managers** - Document product roadmap
+- 💰 **Investors** - Evaluate project viability
 
-### 📋 Tipos de Proyectos:
+### 📋 Project Types:
 
 - E-commerce / Marketplaces
-- SaaS / Plataformas web
-- Apps móviles
-- Sistemas empresariales (ERP, CRM)
-- APIs y microservicios
-- Cualquier proyecto de software
+- SaaS / Web platforms
+- Mobile apps
+- Enterprise systems (ERP, CRM)
+- APIs and microservices
+- Any software project
 
 ---
 
-## 🛠️ Requisitos
+## 🛠️ Requirements
 
-### Para Claude Code:
+### For Claude Code:
 
-- Claude Code instalado
-- Proyecto con estructura `.agent/skills/`
+- Claude Code installed
+- Project with `.agent/skills/` structure
 
-### Para Claude.ai:
+### For Claude.ai:
 
-- Plan Pro, Max, Team o Enterprise
-- Code execution habilitado
+- Pro, Max, Team, or Enterprise plan
+- Code execution enabled
 
-### Para Claude API:
+### For Claude API:
 
-- API Key de Anthropic
-- Headers beta habilitados:
+- Anthropic API Key
+- Beta headers enabled:
   - `code-execution-2025-08-25`
   - `skills-2025-10-02`
   - `files-api-2025-04-14`
 
 ---
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-¡Las contribuciones son bienvenidas!
+Contributions are welcome!
 
-1. Fork el repositorio
-2. Crea una rama: `git checkout -b feature/nueva-funcionalidad`
-3. Commit tus cambios: `git commit -m 'Agrega nueva funcionalidad'`
-4. Push a la rama: `git push origin feature/nueva-funcionalidad`
-5. Abre un Pull Request
-
----
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/new-feature`
+3. Commit your changes: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Open a Pull Request
 
 ---
 
-## 🙏 Créditos
+## 📄 License
 
-Desarrollado por [Gabriel Mayon](https://github.com/gmdaos)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Basado en metodologías de:
+---
+
+## 🙏 Credits
+
+Developed by [Gabriel Mayon](https://github.com/gmdaos)
+
+Based on methodologies from:
 
 - BABOK (Business Analysis Body of Knowledge)
 - Design Thinking (IDEO, Stanford d.school)
@@ -249,20 +249,20 @@ Basado en metodologías de:
 
 ---
 
-## 📞 Soporte
+## 📞 Support
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/gmdaos/business-requirements-analyst/issues)
-- 💬 **Discusiones**: [GitHub Discussions](https://github.com/gmdaos/business-requirements-analystl/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/gmdaos/business-requirements-analyst-skill/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/gmdaos/business-requirements-analyst-skill/discussions)
 - 📧 **Email**: gmgmdaos@gmail.com
 
 ---
 
-## 🔗 Links Útiles
+## 🔗 Useful Links
 
-- [Documentación de Claude Skills](https://docs.anthropic.com/claude/docs/skills)
+- [Claude Skills Documentation](https://docs.anthropic.com/claude/docs/skills)
 - [Claude API](https://docs.anthropic.com/claude/reference/getting-started-with-the-api)
 - [BABOK Guide](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
 
 ---
 
-**⭐ Si este Skill te fue útil, dale una estrella en GitHub!**
+**⭐ If this Skill was useful to you, give it a star on GitHub!**

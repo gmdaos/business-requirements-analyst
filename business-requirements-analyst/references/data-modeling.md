@@ -1,632 +1,641 @@
-# Modelado de Datos Avanzado
+# Advanced Data Modeling
 
-Este documento proporciona técnicas y mejores prácticas para el modelado de datos en proyectos de software.
+This document provides techniques and best practices for data modeling in software projects.
 
-## Niveles de Modelado
+## Modeling Levels
 
-### 1. Modelo Conceptual
+### 1. Conceptual Model
 
-**Objetivo:** Representación de alto nivel, independiente de tecnología.
+**Objective:** High-level representation, technology-independent.
 
-**Características:**
+**Characteristics:**
 
-- Enfocado en el negocio
-- Sin detalles técnicos
-- Fácil de entender por stakeholders no técnicos
+- Focused on business
+- No technical details
+- Easy to understand by non-technical stakeholders
 
-**Ejemplo:**
-
-```
-Usuario ──< tiene >── Pedido ──< contiene >── Producto
-                         │
-                         └──< tiene >── Pago
-```
-
-### 2. Modelo Lógico
-
-**Objetivo:** Estructura detallada, aún independiente de DBMS específico.
-
-**Características:**
-
-- Define atributos y tipos de datos
-- Especifica relaciones y cardinalidades
-- Incluye restricciones y reglas
-
-**Ejemplo:**
+**Example:**
 
 ```
-Usuario
+User ──< has >── Order ──< contains >── Product
+                    │
+                    └──< has >── Payment
+```
+
+### 2. Logical Model
+
+**Objective:** Detailed structure, still independent of specific DBMS.
+
+**Characteristics:**
+
+- Defines attributes and data types
+- Specifies relationships and cardinalities
+- Includes constraints and rules
+
+**Example:**
+
+```
+User
 - id: Integer (PK)
-- email: String (único, no nulo)
-- nombre: String (no nulo)
-- fecha_registro: DateTime
+- email: String (unique, not null)
+- name: String (not null)
+- registration_date: DateTime
 
-Pedido
+Order
 - id: Integer (PK)
-- usuario_id: Integer (FK → Usuario.id)
-- estado: Enum(pendiente, pagado, enviado, entregado)
+- user_id: Integer (FK → User.id)
+- status: Enum(pending, paid, shipped, delivered)
 - total: Decimal(10,2)
-- fecha_creacion: DateTime
+- creation_date: DateTime
 ```
 
-### 3. Modelo Físico
+### 3. Physical Model
 
-**Objetivo:** Implementación específica para un DBMS (PostgreSQL, MySQL, MongoDB, etc.).
+**Objective:** Specific implementation for a DBMS (PostgreSQL, MySQL, MongoDB, etc.).
 
-**Características:**
+**Characteristics:**
 
-- Incluye índices
-- Define particiones
-- Especifica tipos de datos específicos del DBMS
-- Considera optimizaciones de rendimiento
+- Includes indexes
+- Defines partitions
+- Specifies DBMS-specific data types
+- Considers performance optimizations
 
-**Ejemplo (PostgreSQL):**
+**Example (PostgreSQL):**
 
 ```sql
-CREATE TABLE usuarios (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_email (email)
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE pedidos (
+CREATE INDEX idx_email ON users(email);
+
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
-    estado VARCHAR(20) CHECK (estado IN ('pendiente', 'pagado', 'enviado', 'entregado')),
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    status VARCHAR(20) CHECK (status IN ('pending', 'paid', 'shipped', 'delivered')),
     total DECIMAL(10,2) NOT NULL,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_usuario_fecha (usuario_id, fecha_creacion DESC)
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE INDEX idx_user_date ON orders(user_id, creation_date DESC);
 ```
 
-## Tipos de Relaciones
+## Relationship Types
 
-### 1. Uno a Uno (1:1)
+### 1. One-to-One (1:1)
 
-**Cuándo usar:**
+**When to use:**
 
-- Separar datos sensibles
-- Optimización (datos frecuentes vs. poco frecuentes)
-- Extensión de entidad
+- Separate sensitive data
+- Optimization (frequent vs. infrequent data)
+- Entity extension
 
-**Ejemplo:**
+**Example:**
 
 ```
-Usuario ──1:1── PerfilDetallado
+User ──1:1── DetailedProfile
 
-Usuario
+User
 - id
 - email
-- nombre
+- name
 
-PerfilDetallado
+DetailedProfile
 - id
-- usuario_id (FK, único)
-- biografia
-- foto_perfil
-- preferencias_json
+- user_id (FK, unique)
+- biography
+- profile_picture
+- preferences_json
 ```
 
-### 2. Uno a Muchos (1:N)
+### 2. One-to-Many (1:N)
 
-**Más común en aplicaciones.**
+**Most common in applications.**
 
-**Ejemplo:**
+**Example:**
 
 ```
-Usuario ──1:N── Pedido
+User ──1:N── Order
 
-Usuario
+User
 - id
 - email
 
-Pedido
+Order
 - id
-- usuario_id (FK)
+- user_id (FK)
 - total
 ```
 
-### 3. Muchos a Muchos (N:M)
+### 3. Many-to-Many (N:M)
 
-**Requiere tabla intermedia (join table).**
+**Requires a join table (or intermediate table).**
 
-**Ejemplo:**
+**Example:**
 
 ```
-Pedido ──N:M── Producto
+Order ──N:M── Product
 
-Pedido
+Order
 - id
 - total
 
-Producto
+Product
 - id
-- nombre
-- precio
+- name
+- price
 
-PedidoProducto (tabla intermedia)
-- pedido_id (FK)
-- producto_id (FK)
-- cantidad
-- precio_unitario (snapshot del precio al momento)
-- PRIMARY KEY (pedido_id, producto_id)
+OrderProduct (intermediate table)
+- order_id (FK)
+- product_id (FK)
+- quantity
+- unit_price (snapshot of the price at the time)
+- PRIMARY KEY (order_id, product_id)
 ```
 
-**⚠️ Importante:** Almacenar `precio_unitario` en la tabla intermedia para mantener histórico, ya que el precio del producto puede cambiar.
+**⚠️ Important:** Store `unit_price` in the intermediate table to maintain history, as the product's price may change.
 
-## Patrones de Diseño
+## Design Patterns
 
-### Patrón 1: Soft Delete
+### Pattern 1: Soft Delete
 
-**Problema:** No queremos eliminar datos permanentemente.
+**Problem:** We don't want to permanently delete data.
 
-**Solución:** Agregar campo `deleted_at`.
+**Solution:** Add a `deleted_at` field.
 
 ```sql
-CREATE TABLE productos (
+CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    precio DECIMAL(10,2),
+    name VARCHAR(255),
+    price DECIMAL(10,2),
     deleted_at TIMESTAMP NULL
 );
 
--- Consultar solo activos
-SELECT * FROM productos WHERE deleted_at IS NULL;
+-- Query only active items
+SELECT * FROM products WHERE deleted_at IS NULL;
 
--- "Eliminar" (soft delete)
-UPDATE productos SET deleted_at = CURRENT_TIMESTAMP WHERE id = 123;
+-- "Delete" (soft delete)
+UPDATE products SET deleted_at = CURRENT_TIMESTAMP WHERE id = 123;
 ```
 
-### Patrón 2: Versionado de Datos
+### Pattern 2: Data Versioning
 
-**Problema:** Necesitamos mantener historial de cambios.
+**Problem:** We need to maintain a history of changes.
 
-**Solución:** Tabla de versiones.
+**Solution:** Version table.
 
 ```sql
-CREATE TABLE productos (
+CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    precio DECIMAL(10,2),
+    name VARCHAR(255),
+    price DECIMAL(10,2),
     version INTEGER DEFAULT 1
 );
 
-CREATE TABLE productos_historial (
+CREATE TABLE products_history (
     id SERIAL PRIMARY KEY,
-    producto_id INTEGER REFERENCES productos(id),
-    nombre VARCHAR(255),
-    precio DECIMAL(10,2),
+    product_id INTEGER REFERENCES products(id),
+    name VARCHAR(255),
+    price DECIMAL(10,2),
     version INTEGER,
-    modificado_por INTEGER,
-    modificado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    modified_by INTEGER,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
-### Patrón 3: Polimorfismo (Herencia)
+### Pattern 3: Polymorphism (Inheritance)
 
-**Problema:** Múltiples tipos de entidades con campos comunes.
+**Problem:** Multiple types of entities with common fields.
 
-**Soluciones:**
+**Solutions:**
 
-#### Opción A: Single Table Inheritance (STI)
+#### Option A: Single Table Inheritance (STI)
 
 ```sql
-CREATE TABLE usuarios (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    tipo VARCHAR(20), -- 'cliente', 'admin', 'vendedor'
+    type VARCHAR(20), -- 'customer', 'admin', 'vendor'
     email VARCHAR(255),
-    nombre VARCHAR(100),
-    -- Campos específicos de cliente
-    direccion_envio VARCHAR(255),
-    -- Campos específicos de vendedor
-    comision_porcentaje DECIMAL(5,2)
+    name VARCHAR(100),
+    -- Customer-specific fields
+    shipping_address VARCHAR(255),
+    -- Vendor-specific fields
+    commission_percentage DECIMAL(5,2)
 );
 ```
 
-**Ventajas:** Simple, una sola tabla
-**Desventajas:** Muchos campos NULL, no muy normalizado
+**Advantages:** Simple, single table
+**Disadvantages:** Many NULL fields, not highly normalized
 
-#### Opción B: Class Table Inheritance (CTI)
+#### Option B: Class Table Inheritance (CTI)
 
 ```sql
-CREATE TABLE usuarios (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255),
-    nombre VARCHAR(100)
+    name VARCHAR(100)
 );
 
-CREATE TABLE clientes (
-    usuario_id INTEGER PRIMARY KEY REFERENCES usuarios(id),
-    direccion_envio VARCHAR(255)
+CREATE TABLE customers (
+    user_id INTEGER PRIMARY KEY REFERENCES users(id),
+    shipping_address VARCHAR(255)
 );
 
-CREATE TABLE vendedores (
-    usuario_id INTEGER PRIMARY KEY REFERENCES usuarios(id),
-    comision_porcentaje DECIMAL(5,2)
+CREATE TABLE vendors (
+    user_id INTEGER PRIMARY KEY REFERENCES users(id),
+    commission_percentage DECIMAL(5,2)
 );
 ```
 
-**Ventajas:** Normalizado, sin campos NULL innecesarios
-**Desventajas:** Requiere JOINs
+**Advantages:** Normalized, no unnecessary NULL fields
+**Disadvantages:** Requires JOINs
 
-### Patrón 4: Auditoría
+### Pattern 4: Audit
 
-**Problema:** Rastrear quién y cuándo modificó datos.
+**Problem:** Track who and when data was modified.
 
-**Solución:** Campos de auditoría.
+**Solution:** Audit fields.
 
 ```sql
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     total DECIMAL(10,2),
-    -- Campos de auditoría
-    creado_por INTEGER REFERENCES usuarios(id),
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modificado_por INTEGER REFERENCES usuarios(id),
-    modificado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    -- Audit fields
+    created_by INTEGER REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_by INTEGER REFERENCES users(id),
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
-### Patrón 5: Estado Finito (State Machine)
+### Pattern 5: Finite State Machine
 
-**Problema:** Entidad con estados y transiciones válidas.
+**Problem:** Entity with valid states and transitions.
 
-**Solución:** Enum + validación de transiciones.
+**Solution:** Enum + transition validation.
 
 ```sql
-CREATE TYPE estado_pedido AS ENUM (
-    'carrito',
-    'pendiente_pago',
-    'pagado',
-    'en_preparacion',
-    'enviado',
-    'entregado',
-    'cancelado'
+CREATE TYPE order_status AS ENUM (
+    'cart',
+    'pending_payment',
+    'paid',
+    'in_preparation',
+    'shipped',
+    'delivered',
+    'canceled'
 );
 
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    estado estado_pedido DEFAULT 'carrito',
-    estado_anterior estado_pedido
+    status order_status DEFAULT 'cart',
+    previous_status order_status
 );
 
--- Tabla de transiciones válidas
-CREATE TABLE transiciones_pedido (
-    estado_origen estado_pedido,
-    estado_destino estado_pedido,
-    PRIMARY KEY (estado_origen, estado_destino)
+-- Valid transitions table
+CREATE TABLE order_transitions (
+    origin_status order_status,
+    destination_status order_status,
+    PRIMARY KEY (origin_status, destination_status)
 );
 
--- Insertar transiciones válidas
-INSERT INTO transiciones_pedido VALUES
-    ('carrito', 'pendiente_pago'),
-    ('pendiente_pago', 'pagado'),
-    ('pendiente_pago', 'cancelado'),
-    ('pagado', 'en_preparacion'),
-    ('en_preparacion', 'enviado'),
-    ('enviado', 'entregado');
+-- Insert valid transitions
+INSERT INTO order_transitions VALUES
+    ('cart', 'pending_payment'),
+    ('pending_payment', 'paid'),
+    ('pending_payment', 'canceled'),
+    ('paid', 'in_preparation'),
+    ('in_preparation', 'shipped'),
+    ('shipped', 'delivered');
 ```
 
-### Patrón 6: Datos Jerárquicos
+### Pattern 6: Hierarchical Data
 
-**Problema:** Categorías, comentarios anidados, org charts.
+**Problem:** Categories, nested comments, org charts.
 
-#### Opción A: Adjacency List (más simple)
+#### Option A: Adjacency List (simplest)
 
 ```sql
-CREATE TABLE categorias (
+CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100),
-    parent_id INTEGER REFERENCES categorias(id)
+    name VARCHAR(100),
+    parent_id INTEGER REFERENCES categories(id)
 );
 
--- Ejemplo de datos
--- Electrónica (id=1, parent_id=NULL)
---   ├─ Computadoras (id=2, parent_id=1)
+-- Data example
+-- Electronics (id=1, parent_id=NULL)
+--   ├─ Computers (id=2, parent_id=1)
 --   │   ├─ Laptops (id=3, parent_id=2)
 --   │   └─ Desktops (id=4, parent_id=2)
---   └─ Celulares (id=5, parent_id=1)
+--   └─ Mobile Phones (id=5, parent_id=1)
 ```
 
-**Ventajas:** Simple de entender e implementar
-**Desventajas:** Consultas recursivas pueden ser lentas
+**Advantages:** Simple to understand and implement
+**Disadvantages:** Recursive queries can be slow
 
-#### Opción B: Nested Sets (más eficiente para lectura)
+#### Option B: Nested Sets (more efficient for reading)
 
 ```sql
-CREATE TABLE categorias (
+CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100),
+    name VARCHAR(100),
     lft INTEGER NOT NULL,
     rgt INTEGER NOT NULL
 );
 
--- Ejemplo de datos (mismo árbol)
--- Electrónica (lft=1, rgt=10)
---   ├─ Computadoras (lft=2, rgt=7)
+-- Data example (same tree)
+-- Electronics (lft=1, rgt=10)
+--   ├─ Computers (lft=2, rgt=7)
 --   │   ├─ Laptops (lft=3, rgt=4)
 --   │   └─ Desktops (lft=5, rgt=6)
---   └─ Celulares (lft=8, rgt=9)
+--   └─ Mobile Phones (lft=8, rgt=9)
 
--- Obtener todos los descendientes de "Computadoras"
-SELECT * FROM categorias
+-- Get all descendants of "Computers"
+SELECT * FROM categories
 WHERE lft > 2 AND rgt < 7;
 ```
 
-**Ventajas:** Consultas muy eficientes
-**Desventajas:** Inserción/actualización compleja
+**Advantages:** Very efficient queries
+**Disadvantages:** Complex insertion/update
 
-## Normalización
+## Normalization
 
-### Primera Forma Normal (1NF)
+### First Normal Form (1NF)
 
-**Regla:** Cada campo debe contener valores atómicos (no listas).
+**Rule:** Each field must contain atomic values (no lists).
 
-**❌ Incorrecto:**
+**❌ Incorrect:**
 
 ```sql
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id INTEGER,
-    productos VARCHAR(255) -- "Laptop,Mouse,Teclado"
+    products VARCHAR(255) -- "Laptop,Mouse,Keyboard"
 );
 ```
 
-**✅ Correcto:**
+**✅ Correct:**
 
 ```sql
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id INTEGER
 );
 
-CREATE TABLE pedido_productos (
-    pedido_id INTEGER,
-    producto_id INTEGER
+CREATE TABLE order_products (
+    order_id INTEGER,
+    product_id INTEGER
 );
 ```
 
-### Segunda Forma Normal (2NF)
+### Second Normal Form (2NF)
 
-**Regla:** Cumple 1NF + todos los atributos no-clave dependen de la clave completa.
+**Rule:** Complies with 1NF + all non-key attributes depend on the full key.
 
-**❌ Incorrecto:**
+**❌ Incorrect:**
 
 ```sql
-CREATE TABLE pedido_productos (
-    pedido_id INTEGER,
-    producto_id INTEGER,
-    nombre_producto VARCHAR(255), -- Depende solo de producto_id
-    PRIMARY KEY (pedido_id, producto_id)
+CREATE TABLE order_products (
+    order_id INTEGER,
+    product_id INTEGER,
+    product_name VARCHAR(255), -- Depends only on product_id
+    PRIMARY KEY (order_id, product_id)
 );
 ```
 
-**✅ Correcto:**
+**✅ Correct:**
 
 ```sql
-CREATE TABLE productos (
+CREATE TABLE products (
     id INTEGER PRIMARY KEY,
-    nombre VARCHAR(255)
+    name VARCHAR(255)
 );
 
-CREATE TABLE pedido_productos (
-    pedido_id INTEGER,
-    producto_id INTEGER REFERENCES productos(id),
-    PRIMARY KEY (pedido_id, producto_id)
+CREATE TABLE order_products (
+    order_id INTEGER,
+    product_id INTEGER REFERENCES products(id),
+    PRIMARY KEY (order_id, product_id)
 );
 ```
 
-### Tercera Forma Normal (3NF)
+### Third Normal Form (3NF)
 
-**Regla:** Cumple 2NF + no hay dependencias transitivas.
+**Rule:** Complies with 2NF + there are no transitive dependencies.
 
-**❌ Incorrecto:**
+**❌ Incorrect:**
 
 ```sql
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id INTEGER,
-    usuario_id INTEGER,
-    usuario_email VARCHAR(255) -- Depende de usuario_id, no de id
+    user_id INTEGER,
+    user_email VARCHAR(255) -- Depends on user_id, not id
 );
 ```
 
-**✅ Correcto:**
+**✅ Correct:**
 
 ```sql
-CREATE TABLE usuarios (
+CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     email VARCHAR(255)
 );
 
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id INTEGER,
-    usuario_id INTEGER REFERENCES usuarios(id)
+    user_id INTEGER REFERENCES users(id)
 );
 ```
 
-## Desnormalización Estratégica
+## Strategic Denormalization
 
-**Cuándo desnormalizar:**
+**When to denormalize:**
 
-- Optimización de lectura (reportes, dashboards)
-- Reducir JOINs complejos
-- Mantener snapshots históricos
+- Read optimization (reports, dashboards)
+- Reduce complex JOINs
+- Maintain historical snapshots
 
-**Ejemplo: Snapshot de Precio**
+**Example: Price Snapshot**
 
 ```sql
-CREATE TABLE pedido_productos (
-    pedido_id INTEGER,
-    producto_id INTEGER,
-    precio_unitario DECIMAL(10,2), -- Desnormalizado intencionalmente
-    cantidad INTEGER
+CREATE TABLE order_products (
+    order_id INTEGER,
+    product_id INTEGER,
+    unit_price DECIMAL(10,2), -- Intentionally denormalized
+    quantity INTEGER
 );
 ```
 
-**Razón:** El precio del producto puede cambiar, pero queremos mantener el precio al momento de la compra.
+**Reason:** The product price can change, but we want to keep the price at the time of purchase.
 
-## Índices
+## Indexes
 
-### Cuándo Crear Índices
+### When to Create Indexes
 
-**Crear índice si:**
+**Create index if:**
 
-- Campo usado frecuentemente en WHERE
-- Campo usado en JOINs
-- Campo usado en ORDER BY
-- Campo con alta cardinalidad (muchos valores únicos)
+- Field is used frequently in WHERE
+- Field is used in JOINs
+- Field is used in ORDER BY
+- Field has high cardinality (many unique values)
 
-**NO crear índice si:**
+**DO NOT create index if:**
 
-- Tabla muy pequeña (< 1000 filas)
-- Campo con baja cardinalidad (ej: booleano)
-- Campo que cambia frecuentemente
+- Table is very small (< 1000 rows)
+- Field has low cardinality (e.g., boolean)
+- Field changes frequently
 
-### Tipos de Índices
+### Index Types
 
 ```sql
--- Índice simple
-CREATE INDEX idx_email ON usuarios(email);
+-- Simple index
+CREATE INDEX idx_email ON users(email);
 
--- Índice compuesto (orden importa)
-CREATE INDEX idx_usuario_fecha ON pedidos(usuario_id, fecha_creacion);
+-- Composite index (order matters)
+CREATE INDEX idx_user_date ON orders(user_id, creation_date);
 
--- Índice único
-CREATE UNIQUE INDEX idx_email_unique ON usuarios(email);
+-- Unique index
+CREATE UNIQUE INDEX idx_email_unique ON users(email);
 
--- Índice parcial (PostgreSQL)
-CREATE INDEX idx_pedidos_activos ON pedidos(estado)
-WHERE estado != 'cancelado';
+-- Partial index (PostgreSQL)
+CREATE INDEX idx_active_orders ON orders(status)
+WHERE status != 'canceled';
 
--- Índice de texto completo
-CREATE INDEX idx_productos_nombre ON productos
-USING GIN(to_tsvector('spanish', nombre));
+-- Full-text index
+CREATE INDEX idx_products_name ON products
+USING GIN(to_tsvector('english', name));
 ```
 
-## Restricciones (Constraints)
+## Constraints
 
 ```sql
-CREATE TABLE pedidos (
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     total DECIMAL(10,2) CHECK (total >= 0),
-    estado VARCHAR(20) DEFAULT 'pendiente',
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'pending',
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    -- Constraint con nombre
-    CONSTRAINT chk_estado CHECK (estado IN ('pendiente', 'pagado', 'enviado'))
+    -- Named constraint
+    CONSTRAINT chk_status CHECK (status IN ('pending', 'paid', 'shipped'))
 );
 ```
 
-## Ejemplo Completo: E-commerce
+## Complete Example: E-commerce
 
 ```sql
--- Usuarios
-CREATE TABLE usuarios (
+-- Users
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    rol VARCHAR(20) DEFAULT 'cliente',
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_email (email)
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(20) DEFAULT 'customer',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Categorías (jerárquicas)
-CREATE TABLE categorias (
+CREATE INDEX idx_users_email ON users(email);
+
+-- Categories (hierarchical)
+CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     slug VARCHAR(100) UNIQUE NOT NULL,
-    parent_id INTEGER REFERENCES categorias(id),
-    INDEX idx_parent (parent_id)
+    parent_id INTEGER REFERENCES categories(id)
 );
 
--- Productos
-CREATE TABLE productos (
+CREATE INDEX idx_categories_parent ON categories(parent_id);
+
+-- Products
+CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    categoria_id INTEGER REFERENCES categorias(id),
-    nombre VARCHAR(255) NOT NULL,
-    descripcion TEXT,
-    precio DECIMAL(10,2) NOT NULL CHECK (precio >= 0),
+    category_id INTEGER REFERENCES categories(id),
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL CHECK (price >= 0),
     stock INTEGER DEFAULT 0 CHECK (stock >= 0),
-    activo BOOLEAN DEFAULT true,
+    active BOOLEAN DEFAULT true,
     deleted_at TIMESTAMP NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_categoria (categoria_id),
-    INDEX idx_activo (activo) WHERE deleted_at IS NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Pedidos
-CREATE TABLE pedidos (
+CREATE INDEX idx_products_category ON products(category_id);
+CREATE INDEX idx_products_active ON products(active) WHERE deleted_at IS NULL;
+
+-- Orders
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
-    estado VARCHAR(20) DEFAULT 'carrito',
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    status VARCHAR(20) DEFAULT 'cart',
     subtotal DECIMAL(10,2) DEFAULT 0,
-    impuestos DECIMAL(10,2) DEFAULT 0,
+    taxes DECIMAL(10,2) DEFAULT 0,
     total DECIMAL(10,2) DEFAULT 0,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_usuario_estado (usuario_id, estado),
-    INDEX idx_fecha (creado_en DESC)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Pedido - Productos (N:M)
-CREATE TABLE pedido_productos (
-    pedido_id INTEGER REFERENCES pedidos(id) ON DELETE CASCADE,
-    producto_id INTEGER REFERENCES productos(id),
-    cantidad INTEGER NOT NULL CHECK (cantidad > 0),
-    precio_unitario DECIMAL(10,2) NOT NULL, -- Snapshot
-    subtotal DECIMAL(10,2) GENERATED ALWAYS AS (cantidad * precio_unitario) STORED,
-    PRIMARY KEY (pedido_id, producto_id)
+CREATE INDEX idx_orders_user_status ON orders(user_id, status);
+CREATE INDEX idx_orders_date ON orders(created_at DESC);
+
+-- Order - Products (N:M)
+CREATE TABLE order_products (
+    order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+    product_id INTEGER REFERENCES products(id),
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    unit_price DECIMAL(10,2) NOT NULL, -- Snapshot
+    subtotal DECIMAL(10,2) GENERATED ALWAYS AS (quantity * unit_price) STORED,
+    PRIMARY KEY (order_id, product_id)
 );
 
--- Direcciones de Envío
-CREATE TABLE direcciones (
+-- Shipping Addresses
+CREATE TABLE addresses (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES usuarios(id) ON DELETE CASCADE,
-    nombre VARCHAR(100),
-    calle VARCHAR(255),
-    ciudad VARCHAR(100),
-    codigo_postal VARCHAR(20),
-    pais VARCHAR(50),
-    es_predeterminada BOOLEAN DEFAULT false,
-    INDEX idx_usuario (usuario_id)
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    name VARCHAR(100),
+    street VARCHAR(255),
+    city VARCHAR(100),
+    zip_code VARCHAR(20),
+    country VARCHAR(50),
+    is_default BOOLEAN DEFAULT false
 );
 
--- Pagos
-CREATE TABLE pagos (
+CREATE INDEX idx_addresses_user ON addresses(user_id);
+
+-- Payments
+CREATE TABLE payments (
     id SERIAL PRIMARY KEY,
-    pedido_id INTEGER UNIQUE REFERENCES pedidos(id),
-    metodo VARCHAR(50), -- 'tarjeta', 'paypal', 'transferencia'
-    monto DECIMAL(10,2) NOT NULL,
-    estado VARCHAR(20) DEFAULT 'pendiente',
-    transaccion_id VARCHAR(255),
-    procesado_en TIMESTAMP,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_pedido (pedido_id),
-    INDEX idx_estado (estado)
+    order_id INTEGER UNIQUE REFERENCES orders(id),
+    method VARCHAR(50), -- 'card', 'paypal', 'transfer'
+    amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending',
+    transaction_id VARCHAR(255),
+    processed_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Reseñas
-CREATE TABLE resenas (
+CREATE INDEX idx_payments_order ON payments(order_id);
+CREATE INDEX idx_payments_status ON payments(status);
+
+-- Reviews
+CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    producto_id INTEGER REFERENCES productos(id) ON DELETE CASCADE,
-    usuario_id INTEGER REFERENCES usuarios(id),
-    calificacion INTEGER CHECK (calificacion BETWEEN 1 AND 5),
-    comentario TEXT,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (producto_id, usuario_id), -- Un usuario, una reseña por producto
-    INDEX idx_producto (producto_id)
+    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users(id),
+    rating INTEGER CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (product_id, user_id) -- One user, one review per product
 );
+
+CREATE INDEX idx_reviews_product ON reviews(product_id);
 ```
 
-## Consejos Finales
+## Final Tips
 
-1. **Empieza normalizado** - Desnormaliza solo si hay razón de rendimiento
-2. **Usa tipos de datos apropiados** - No uses VARCHAR(255) para todo
-3. **Define restricciones en la BD** - No solo en la aplicación
-4. **Documenta decisiones** - Por qué se eligió cierta estructura
-5. **Planifica para escala** - Considera particionamiento si esperas millones de filas
-6. **Usa migraciones** - Versionado de esquema (Alembic, Flyway, etc.)
-7. **Testea con datos reales** - El rendimiento puede sorprender
+1. **Start normalized** - Denormalize only if there is a performance reason
+2. **Use appropriate data types** - Don't use VARCHAR(255) for everything
+3. **Define constraints in the DB** - Not just in the application
+4. **Document decisions** - Why a certain structure was chosen
+5. **Plan for scale** - Consider partitioning if you expect millions of rows
+6. **Use migrations** - Schema versioning (Alembic, Flyway, etc.)
+7. **Test with real data** - Performance can be surprising
