@@ -36,7 +36,7 @@ Un **documento maestro de requerimientos** que incluye:
 ### Opción 1: NPX (Recomendado)
 
 ```bash
-npx skills add gmdaos/business-requirements-analyst-skill
+npx skills add gmdaos/business-requirements-analyst
 ```
 
 ### Opción 2: Instalación Manual
@@ -45,15 +45,15 @@ npx skills add gmdaos/business-requirements-analyst-skill
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/gmdaos/business-requirements-analyst-skill.git
+git clone https://github.com/gmdaos/business-requirements-analyst.git
 
 # Copiar a tu proyecto
-cp -r business-requirements-analyst-skill/business-requirements-analyst .agent/skills/
+cp -r business-requirements-analyst/business-requirements-analyst .agent/skills/
 ```
 
 #### En Claude.ai:
 
-1. Descarga el archivo [business-requirements-analyst.skill](https://github.com/gmdaos/business-requirements-analyst-skill/releases/latest)
+1. Descarga el archivo [business-requirements-analyst.skill](https://github.com/gmdaos/business-requirements-analyst/releases/latest)
 2. Ve a **Settings** → **Features** → **Skills**
 3. Haz clic en **Upload Custom Skill**
 4. Selecciona el archivo `.skill`
@@ -251,8 +251,8 @@ Basado en metodologías de:
 
 ## 📞 Soporte
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/gmdaos/business-requirements-analyst-skill/issues)
-- 💬 **Discusiones**: [GitHub Discussions](https://github.com/gmdaos/business-requirements-analyst-skill/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/gmdaos/business-requirements-analyst/issues)
+- 💬 **Discusiones**: [GitHub Discussions](https://github.com/gmdaos/business-requirements-analystl/discussions)
 - 📧 **Email**: gmgmdaos@gmail.com
 
 ---
