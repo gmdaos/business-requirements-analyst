@@ -221,6 +221,9 @@
 **Description:**
 [Detailed description of the functionality]
 
+**EARS Syntax:**
+[Pattern: WHEN <trigger> THE <system> shall <response>]
+
 **Priority:** [High | Medium | Low]
 
 **Acceptance Criteria:**
@@ -822,6 +825,39 @@ The application may be slow or unusable for users with poor connections.
 
 ---
 
-## 12. Annexes
+## 12. Architecture Decision Records (ADR)
+
+| ID      | Title   | Status     | Decision Summary |
+| ------- | ------- | ---------- | ---------------- |
+| ADR-001 | [Title] | [Accepted] | [Brief summary]  |
+
+---
+
+## 13. Traceability Matrix
+
+| Requirement ID | Type       | Business ID | Implementation Path        | Status     |
+| -------------- | ---------- | ----------- | -------------------------- | ---------- |
+| REQ-001        | Functional | BRD.01.01   | `src/components/Login.vue` | [Complete] |
+
+---
+
+## 14. Quality Gates & Final Score
+
+**Maturity Evaluation:**
+
+- [ ] **Visión:** Clear problem and value proposition?
+- [ ] **EARS:** Are all functional requirements following EARS syntax?
+- [ ] **Data Model:** Are entities and relationships fully defined?
+- [ ] **Traceability:** are all IDs consistent?
+
+**Summary Score:**
+
+- **Documentation Score:** 0 / 100
+- **Overall Status:** [Draft | Ready for Dev | Approved]
+- **Observations:** [List of pending gaps]
+
+---
+
+## 15. Annexes
 
 [Include here any additional documentation, system diagrams, external links, etc.]

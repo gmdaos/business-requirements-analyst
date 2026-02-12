@@ -20,6 +20,8 @@ Good requirements gathering covers all business layers:
 - ⚙️ Technology
 - ⚠️ Risks
 - 📈 Growth
+- 🔗 **Traceability** (from Business to Code)
+- ⚖️ **Quality Gates** (Validation standards)
 
 ## Available Methodologies
 
@@ -72,8 +74,9 @@ Combine 3 key elements:
 1. **Business vision**
 2. **Processes**
 3. **System / product**
+4. **Traceability & Validation** (Ensure everything is connected and meets quality standards)
 
-And document everything in a **single master artifact**.
+And document everything in a **single master artifact** or a structured layer system.
 
 ## Structure of the Complete Requirements Document
 
@@ -412,11 +415,54 @@ Divide into manageable stages:
 - Recommendations system
 ```
 
+### 📌 12. Architecture Decision Records (ADR)
+
+Document critical technical decisions to preserve context.
+
+**Example:**
+
+- **ADR-001:** Use PostgreSQL for relational data integrity.
+- **ADR-002:** Implement Redis for real-time notification caching.
+
+See [references/adr-template.md](references/adr-template.md) for details.
+
+### 📌 13. Traceability Matrix & Tags
+
+Embed cumulative tags to bridge the gap between requirements and implementation.
+
+**Format:** `@brd: BRD.01.01 @req: REQ-001`
+
+See [references/traceability-guide.md](references/traceability-guide.md).
+
+### 📌 14. Quality Gates & Score
+
+Evaluate the maturity of the documentation before proceeding.
+
+- **Maturity Level:** [0-100%]
+- **Status:** [Draft | Ready for Dev | Approved]
+- **Missing Items:** List of gaps to be filled.
+
 ## Gathering Process (Step by Step)
 
-### 1. Interviews
+### 0. Process Kickoff & Roadmap
 
-**Even if you are the stakeholder yourself**, perform the exercise of answering:
+**Instruction:** At the very beginning of the interaction, you MUST:
+
+1.  **Introduce yourself:** Briefly explain you are a Business Requirements Analyst using a professional methodology.
+2.  **Present the Roadmap:** Explain the 6 phases you will follow (Discovery → Vision → Processes → Functional/Non-Functional → Data Model → Roadmap) so the user knows what to expect.
+3.  **Acknowledge Documentation:** If the user has provided files or previous context, state that you will analyze them first to avoid asking for information already provided.
+
+### 1. Discovery & Context Analysis (Smart Discovery)
+
+**Instruction:**
+
+- **Analyze First:** Before asking any questions, scan all provided files (images, text, documents).
+- **Find Gaps:** Extract all possible information (Stakeholders, Problem, Goals) from the context.
+- **Zero Redundancy Rule:** Never ask "What is the problem?" if it's already in the documents. Instead, validate: "I've analyzed the documents and understood the problem as [X]. Is that correct?".
+
+### 2. Interviews & Deep Dive
+
+**Instruction:** Focus only on the gaps. **Even if you are the stakeholder yourself**, perform the exercise of answering:
 
 - What problem does this solve?
 - Who will use it?
@@ -451,7 +497,15 @@ Create visual diagrams of:
 4. Adjust and refine
 5. Repeat until consensus is reached
 
-### 5. Living Document
+### 5. Entity & Data Model Synthesis (Auto-ERD)
+
+**Instruction:**
+
+- **Active Extraction:** Throughout the entire process, identify all key entities mentioned (e.g., Orders, Users, inventory items).
+- **Auto-Generation:** At the end of the analysis, if entities were detected, generate the Data Model section automatically.
+- **Visual Diagram:** You MUST include a visual Entity-Relationship Diagram using **Mermaid.js** syntax for better clarity.
+
+### 6. Living Document
 
 **Keep it updated:**
 
@@ -487,3 +541,6 @@ For advanced techniques and specific examples:
 - **Complex process mapping:** [references/process-mapping.md](references/process-mapping.md)
 - **Advanced data modeling:** [references/data-modeling.md](references/data-modeling.md)
 - **Detailed use cases:** [references/use-cases.md](references/use-cases.md)
+- **EARS Methodology:** [references/ears-methodology.md](references/ears-methodology.md)
+- **ADR Templates:** [references/adr-template.md](references/adr-template.md)
+- **Traceability Guide:** [references/traceability-guide.md](references/traceability-guide.md)
