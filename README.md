@@ -284,22 +284,33 @@ For quick vision and validation:
 
 ---
 
-## 🛠️ Requirements
+## 🌐 Compatibility & Setup
 
-### For Claude Code:
+This Skill is designed to be **platform-agnostic** and works with any AI, Agent, or IDE that supports the `.agent/skills` (or similar) framework.
 
-- Claude Code installed.
-- Project with `.agent/skills/` structure.
+### Global Setup
 
-### For Claude.ai:
+1. Clone this repository.
+2. Link the `business-requirements-analyst` folder to your environment's skill or agent directory (usually `.agent/skills/` or `.agent/workflows/`).
 
-- Pro, Max, Team, or Enterprise plan.
-- Code execution enabled.
+### Specific Implementation Examples:
 
-### For Claude API:
+#### 🤖 Claude Code (Terminal)
 
-- Anthropic API Key.
-- Beta headers enabled (`code-execution`, `skills`, `files-api`).
+- **Status:** Fully Supported.
+- Ensure your project has the `.agent/skills/` structure and the folder is present there.
+
+#### 💬 Claude.ai (Web Interface)
+
+- **Status:** Pro, Max, Team, or Enterprise plan required.
+- Enable **Code Execution** in your profile settings to allow the agent to read the methodology.
+
+#### 🔌 AI-Ready IDEs & APIs
+
+- **Status:** Compatible with any system supporting **Anthropic Beta** headers:
+  - `code-execution-2025-08-25`
+  - `skills-2025-10-02`
+  - `files-api-2025-04-14`
 
 ---
 
